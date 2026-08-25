@@ -1,0 +1,111 @@
+---
+// Portado desde el frame "Navegacion Barra" (node 783:238) del archivo de Figma.
+// Fijo arriba con el mismo look "flotante" del diseño: fondo blanco, esquinas
+// inferiores redondeadas y sombra suave.
+
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const links: NavLink[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Productos', href: '/productos' },
+  { label: 'Quienes Somos', href: '/nosotros' },
+  { label: 'Blog', href: '/blog' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 w-full">
+  <div class="rounded-b-2xl bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+    <nav
+      class="mx-auto flex w-full max-w-[1280px] items-center justify-between px-6 py-7 sm:px-10 lg:px-[66px]"
+      aria-label="Navegación principal"
+    >
+      <a href="/" class="shrink-0">
+        <img
+          src="/logo-prochem.svg"
+          alt="Prochem Bio"
+          class="h-10 w-auto sm:h-12"
+          width="193"
+          height="48"
+        />
+      </a>
+
+      <div class="hidden items-center gap-8 font-heading text-base font-bold tracking-[-0.48px] md:flex">
+        {
+          links.map((link) => {
+            const isActive = currentPath === link.href;
+            return (
+              <a
+                href={link.href}
+                class:list={[
+                  'transition-opacity hover:opacity-100',
+                  isActive
+                    ? 'text-prochem-accent opacity-100'
+                    : 'text-prochem-dark opacity-90',
+                ]}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            );
+          })
+        }
+
+        <span class="h-5 w-px bg-prochem-dark/20" aria-hidden="true"></span>
+
+        <a
+          href="/contacto"
+          class="rounded-lg bg-prochem-yellow px-4 py-2.5 font-heading text-base font-bold tracking-[-0.48px] text-prochem-dark transition-transform hover:scale-[1.03]"
+        >
+          Contacto
+        </a>
+      </div>
+
+      <!-- Botón mobile: el diseño de Figma es desktop-only, se agrega acá
+           para cumplir el piso de calidad (responsive hasta mobile). -->
+      <button
+        type="button"
+        class="inline-flex items-center justify-center rounded-lg p-2 text-prochem-dark md:hidden"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        id="mobile-menu-button"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+    </nav>
+
+    <div id="mobile-menu" class="hidden flex-col gap-4 px-6 pb-6 md:hidden">
+      {
+        links.map((link) => (
+          <a href={link.href} class="font-heading text-base font-bold text-prochem-dark">
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="/contacto"
+        class="rounded-lg bg-prochem-yellow px-4 py-2.5 text-center font-heading text-base font-bold text-prochem-dark"
+      >
+        Contacto
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+
+  button?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('flex');
+    menu?.classList.toggle('hidden');
+    button.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+</script>
