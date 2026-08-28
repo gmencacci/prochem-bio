@@ -1,0 +1,32 @@
+---
+// Página "Quienes Somos" — corresponde al frame "NOSOTROS" de Figma. Todo
+// este contenido (Hero, Valores, Logística, Soluciones, Propósito, Historia,
+// Normas ISO) estaba antes armado por error en el Home; se movió acá tras
+// verificar contra el archivo real de Figma qué frame le correspondía.
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Valores from '../components/Valores.astro';
+import Logistica from '../components/Logistica.astro';
+import Soluciones from '../components/Soluciones.astro';
+import Proposito from '../components/Proposito.astro';
+import Historia from '../components/Historia.astro';
+import NormasISO from '../components/NormasISO.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Quienes Somos">
+  <Header />
+
+  <main>
+    <Hero />
+    <Valores />
+    <Logistica />
+    <Soluciones />
+    <Proposito />
+    <Historia />
+    <NormasISO />
+  </main>
+
+  <Footer />
+</Layout>

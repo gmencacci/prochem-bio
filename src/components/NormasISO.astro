@@ -1,0 +1,56 @@
+---
+// Sección "Normas ISO" del frame NOSOTROS. Certificaciones y logo
+// verificados contra Figma: 3 sellos TÜV NORD + el logo de SENASA (Servicio
+// Nacional de Sanidad y Calidad Agroalimentaria). No hay logos de "socios"
+// genéricos en el diseño — se sacaron los placeholders inventados.
+import Icon from './Icon.astro';
+
+interface Certificacion {
+  entity: string;
+  norm: string;
+}
+
+const certificaciones: Certificacion[] = [
+  { entity: 'TÜV NORD CERT GmbH', norm: 'ISO 45001' },
+  { entity: 'TÜV NORD', norm: 'ISO 9001' },
+  { entity: 'TÜV NORD Brasil', norm: 'ISO 9001' },
+];
+---
+
+<section class="border-t border-prochem-dark/10 bg-prochem-cream">
+  <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
+    <h2 class="font-heading text-3xl font-bold leading-tight text-prochem-dark sm:text-4xl">
+      Normas ISO
+    </h2>
+
+    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+      {
+        certificaciones.map((cert) => (
+          <div class="flex items-center gap-4 rounded-card border border-prochem-dark/10 bg-white p-6">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-prochem-accent/10 text-prochem-accent">
+              <Icon name="badge-check" />
+            </span>
+            <div>
+              <p class="font-heading text-base font-bold text-prochem-dark">
+                {cert.norm}
+              </p>
+              <p class="text-sm text-prochem-dark/60">{cert.entity}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 flex items-center gap-3 rounded-card border border-prochem-dark/10 bg-white px-6 py-5">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-prochem-accent/10 text-prochem-accent">
+        <Icon name="badge-check" />
+      </span>
+      <div>
+        <p class="font-heading text-base font-bold text-prochem-dark">SENASA</p>
+        <p class="text-sm text-prochem-dark/60">
+          Servicio Nacional de Sanidad y Calidad Agroalimentaria
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

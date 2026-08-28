@@ -1,0 +1,81 @@
+---
+// Sección "Servicios" del frame INICIO — reconstruida a partir de una
+// captura de pantalla del diseño real de Figma que pasó el usuario (la
+// versión anterior tenía layout, íconos y hasta un título equivocados).
+//
+// Layout real: dos columnas. Izquierda, una lista vertical sin tarjetas
+// (ícono + título + descripción, sin bordes ni fondo por ítem). Derecha,
+// un collage de fotos. No hay botón "Ver Más" en esta sección.
+//
+// PENDIENTE: las fotos del collage son las reales del diseño (laboratorio,
+// planta industrial, campo) y no se pudieron descargar desde Figma — hoy
+// son placeholders neutros marcados como tales, no fotos inventadas.
+import Icon from './Icon.astro';
+
+interface Servicio {
+  icon: 'globe' | 'filter' | 'droplet';
+  title: string;
+  description: string;
+}
+
+const servicios: Servicio[] = [
+  {
+    icon: 'globe',
+    title: 'Contract Manufacturing',
+    description:
+      'Desarrollo o transferencia de formulaciones. Producción bajo especificaciones del cliente. Fraccionado y packaging. Control de calidad y logística integrada.',
+  },
+  {
+    icon: 'filter',
+    title: 'Formulación y Fraccionado',
+    description:
+      'Escalado industrial. Adaptación a distintos formatos comerciales e industriales.',
+  },
+  {
+    icon: 'droplet',
+    title: 'Investigación y Desarrollo (I+D)',
+    description:
+      'Desarrollo de nuevos productos. Reformulación y optimización. Mejora de rendimiento técnico.',
+  },
+];
+---
+
+<section class="bg-white">
+  <div class="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-12 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:px-[66px]">
+    <div>
+      <p class="font-heading text-sm font-bold uppercase tracking-wide text-prochem-accent">
+        Producción para terceros
+      </p>
+      <h2 class="mt-3 font-heading text-3xl font-bold leading-tight text-prochem-dark sm:text-4xl">
+        Servicios
+      </h2>
+
+      <div class="mt-10 space-y-8">
+        {
+          servicios.map((servicio) => (
+            <div class="flex gap-4">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-prochem-dark text-prochem-dark">
+                <Icon name={servicio.icon} class="h-5 w-5" />
+              </span>
+              <div>
+                <h3 class="font-heading text-lg font-bold text-prochem-dark">
+                  {servicio.title}
+                </h3>
+                <p class="mt-2 text-sm leading-relaxed text-prochem-dark/70">
+                  {servicio.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- PENDIENTE: reemplazar por el collage de fotos real de Figma -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="col-span-2 aspect-[16/10] rounded-card bg-prochem-gray" aria-hidden="true"></div>
+      <div class="aspect-square rounded-card bg-prochem-gray" aria-hidden="true"></div>
+      <div class="aspect-square rounded-card bg-prochem-gray" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
