@@ -1,26 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Valores from '../components/Valores.astro';
-import Logistica from '../components/Logistica.astro';
+import HeroHome from '../components/HeroHome.astro';
+import Categorias from '../components/Categorias.astro';
+import Servicios from '../components/Servicios.astro';
+import ValoresDestacados from '../components/ValoresDestacados.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Inicio">
   <Header />
 
   <main>
-    <Hero />
-    <Valores />
-    <Logistica />
-
-    <!--
-      Próximas secciones a portar desde Figma (mismo orden que el frame "NOSOTROS"):
-      4. Soluciones que impulsan la industria
-      5. Propósito
-      6. Historia (timeline)
-      7. Normas ISO + logos de socios
-      8. Footer
-    -->
+    <HeroHome />
+    <Categorias />
+    <Servicios />
+    <ValoresDestacados />
   </main>
+
+  <Footer />
 </Layout>

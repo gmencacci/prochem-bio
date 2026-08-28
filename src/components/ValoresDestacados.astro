@@ -1,0 +1,82 @@
+---
+// Franja de 3 valores del frame INICIO — versión reducida (3 de las 6
+// tarjetas de "Valores Corporativos") en fondos alternados sólidos
+// (verde oscuro / blanco / amarillo), seguida de una foto a todo el ancho.
+// Título y descripción de cada tarjeta son idénticos a los de Valores.astro
+// (mismo componente reutilizado en Figma), verificados contra el archivo.
+//
+// PENDIENTE: la foto debajo de la franja es la real del diseño (primer
+// plano de una hoja) y no se pudo descargar desde Figma — hoy es un
+// placeholder neutro marcado como tal.
+import Icon from './Icon.astro';
+
+interface Valor {
+  icon: 'award' | 'droplet' | 'filter';
+  title: string;
+  description: string;
+  theme: 'dark' | 'light' | 'accent';
+}
+
+const valores: Valor[] = [
+  {
+    icon: 'award',
+    title: 'Excelencia Operativa',
+    description:
+      'Estandarización, control estadístico de procesos y mejora continua como ejes de la eficiencia corporativa.',
+    theme: 'dark',
+  },
+  {
+    icon: 'droplet',
+    title: 'Sustentabilidad',
+    description:
+      'Gestión responsable de recursos, reducción del impacto ambiental y cumplimiento de normativas vigentes.',
+    theme: 'light',
+  },
+  {
+    icon: 'filter',
+    title: 'Innovación Tecnológica',
+    description:
+      'Aplicación sistemática de I+D para el desarrollo de nuevas formulaciones y optimización de procesos.',
+    theme: 'accent',
+  },
+];
+
+const themeClasses: Record<Valor['theme'], string> = {
+  dark: 'bg-prochem-dark text-white',
+  light: 'bg-white text-prochem-dark',
+  accent: 'bg-prochem-yellow text-prochem-dark',
+};
+
+const bodyThemeClasses: Record<Valor['theme'], string> = {
+  dark: 'text-white/75',
+  light: 'text-prochem-dark/70',
+  accent: 'text-prochem-dark/80',
+};
+
+const iconThemeClasses: Record<Valor['theme'], string> = {
+  dark: 'bg-white/10 text-white',
+  light: 'bg-prochem-accent/10 text-prochem-accent',
+  accent: 'bg-prochem-dark/10 text-prochem-dark',
+};
+---
+
+<section>
+  <div class="grid grid-cols-1 sm:grid-cols-3">
+    {
+      valores.map((valor) => (
+        <div class={`px-8 py-14 sm:px-10 ${themeClasses[valor.theme]}`}>
+          <span class={`flex h-12 w-12 items-center justify-center rounded-full ${iconThemeClasses[valor.theme]}`}>
+            <Icon name={valor.icon} />
+          </span>
+          <h3 class="mt-6 font-heading text-lg font-bold">{valor.title}</h3>
+          <p class={`mt-3 text-sm leading-relaxed ${bodyThemeClasses[valor.theme]}`}>
+            {valor.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+
+  {/* PENDIENTE: reemplazar por la foto real del diseño (primer plano de hoja) */}
+  <div class="h-56 w-full bg-prochem-gray sm:h-72" aria-hidden="true"></div>
+</section>

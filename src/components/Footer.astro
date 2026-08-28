@@ -1,0 +1,113 @@
+---
+// Footer real del frame NOSOTROS (aparece también al final de INICIO).
+// Dirección, teléfonos, email y redes verificados textualmente contra
+// Figma. Nav links iguales a los del Header.
+import Icon from './Icon.astro';
+
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const links: NavLink[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Productos', href: '/productos' },
+  { label: 'Quienes Somos', href: '/nosotros' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contacto', href: '/contacto' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-prochem-dark">
+  <div class="mx-auto w-full max-w-[1280px] px-6 py-16 sm:px-10 lg:px-[66px]">
+    <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-2">
+        <img
+          src="/logo-prochem.svg"
+          alt="Prochem Bio"
+          class="h-10 w-auto brightness-0 invert"
+          width="193"
+          height="48"
+        />
+        <p class="mt-5 max-w-[360px] text-sm leading-relaxed text-white/70">
+          Soluciones químicas para los sectores agroindustrial e industrial.
+        </p>
+
+        <div class="mt-6 flex items-center gap-3">
+          <a
+            href="#"
+            aria-label="LinkedIn"
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-prochem-accent hover:text-prochem-dark"
+          >
+            <Icon name="linkedin" class="h-4 w-4" />
+          </a>
+          <a
+            href="#"
+            aria-label="Instagram"
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-prochem-accent hover:text-prochem-dark"
+          >
+            <Icon name="instagram" class="h-4 w-4" />
+          </a>
+          <a
+            href="#"
+            aria-label="YouTube"
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-prochem-accent hover:text-prochem-dark"
+          >
+            <Icon name="youtube" class="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+
+      <nav aria-label="Enlaces del sitio">
+        <h3 class="font-heading text-sm font-bold uppercase tracking-wide text-white/50">
+          Navegación
+        </h3>
+        <ul class="mt-5 space-y-3">
+          {
+            links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-white/80 transition-colors hover:text-white">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h3 class="font-heading text-sm font-bold uppercase tracking-wide text-white/50">
+          Contacto
+        </h3>
+        <ul class="mt-5 space-y-3 text-sm text-white/80">
+          <li class="flex items-start gap-2">
+            <Icon name="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-prochem-accent" />
+            <span>
+              Av. San Nicolás N° 645, Parque Comirsa.<br />
+              Ramallo (2915), Buenos Aires, Argentina.
+            </span>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="phone" class="h-4 w-4 shrink-0 text-prochem-accent" />
+            <span>
+              +54 (0336) 4463033<br />
+              +54 (0336) 4460707
+            </span>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="mail" class="h-4 w-4 shrink-0 text-prochem-accent" />
+            info@prochembio.com.ar
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="mt-12 border-white/10" />
+
+    <p class="mt-6 text-center text-xs text-white/50">
+      © {year} Prochem Bio S.A. Todos los derechos reservados.
+    </p>
+  </div>
+</footer>

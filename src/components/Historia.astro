@@ -1,0 +1,61 @@
+---
+// "Una Historia De Crecimiento Y Evolución" — sección HISTORIA del frame
+// NOSOTROS. Años, títulos y el texto del primer y tercer hito verificados
+// textualmente contra Figma. El segundo hito ("2000 · Implementación") solo
+// tiene confirmada la frase de impacto ("Este acontecimiento impulsó...");
+// en el archivo de Figma esa tarjeta repite además, como placeholder propio
+// del diseño, el mismo párrafo del hito de 1998 — no se replica acá para no
+// duplicar contenido sin sentido.
+
+interface Hito {
+  year: string;
+  title: string;
+  description: string;
+}
+
+const hitos: Hito[] = [
+  {
+    year: '1998',
+    title: 'Fundación',
+    description:
+      'El origen de Prochem Bio se remonta a hace más de veinticinco años, cuando en 1998 los hermanos Iván y Alfredo Marun emprendieron el desafío de crear una empresa dedicada a la producción y comercialización de productos auxiliares para la industria textil y papelera.',
+  },
+  {
+    year: '2000',
+    title: 'Implementación',
+    description:
+      'Este acontecimiento impulsó la apertura hacia un nuevo mercado: la producción de fitosanitarios.',
+  },
+  {
+    year: '2026',
+    title: 'Actualidad',
+    description:
+      'Hoy la compañía se dedica a la producción y comercialización de fertilizantes, operando desde su Planta Industrial Comirsa, en Ramallo, Buenos Aires.',
+  },
+];
+---
+
+<section class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
+  <h2 class="font-heading text-3xl font-bold leading-tight text-prochem-dark sm:text-4xl">
+    Una historia de crecimiento y evolución
+  </h2>
+
+  <ol class="mt-12 space-y-10 border-l-2 border-prochem-dark/10 pl-8 sm:space-y-12">
+    {
+      hitos.map((hito) => (
+        <li class="relative">
+          <span
+            class="absolute -left-[calc(2rem+7px)] top-1 h-3 w-3 rounded-full bg-prochem-accent"
+            aria-hidden="true"
+          />
+          <p class="font-heading text-sm font-bold text-prochem-accent">
+            {hito.year} · {hito.title}
+          </p>
+          <p class="mt-2 max-w-[620px] text-sm leading-relaxed text-prochem-dark/70">
+            {hito.description}
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
