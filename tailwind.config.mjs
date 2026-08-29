@@ -21,6 +21,7 @@ export default {
       },
       borderRadius: {
         card: '16px',
+        button: '8px',
       },
     },
   },

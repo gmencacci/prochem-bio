@@ -1,25 +1,48 @@
 ---
-// Selector de categorías de producto del frame INICIO — reconstruido a
-// partir de una captura del diseño real: cada tarjeta tiene una foto de
-// fondo propia (tractor fumigando, aplicación aérea, campo) con overlay
-// oscuro degradé, ícono insignia, título y botón "Ver Más".
-//
-// PENDIENTE: las 4 fotos de fondo son las reales del diseño y no se
-// pudieron descargar desde Figma (rate limit del conector) — hoy son
-// placeholders neutros marcados como tales, no fotos inventadas.
+// Selector de categorías de producto del frame INICIO — cada tarjeta tiene
+// foto de fondo propia con overlay oscuro degradé, ícono insignia real
+// (provisto por el usuario, SVG exacto de Figma), título y botón "Ver Más"
+// (layout verificado contra captura del diseño real).
+// Fotos provistas por el usuario, en el orden real: Herbicidas, Coadyuvantes,
+// Insecticidas, Fungicidas.
 import Icon from './Icon.astro';
 
 interface Categoria {
-  icon: 'wheat' | 'flower' | 'bug' | 'leaf';
+  icon:
+    | 'badge-herbicidas'
+    | 'badge-coadyuvantes'
+    | 'badge-insecticidas'
+    | 'badge-fungicidas';
   label: string;
   href: string;
+  image: string;
 }
 
 const categorias: Categoria[] = [
-  { icon: 'wheat', label: 'Herbicidas', href: '/productos#herbicidas' },
-  { icon: 'flower', label: 'Coadyuvantes', href: '/productos#coadyuvantes' },
-  { icon: 'bug', label: 'Insecticidas', href: '/productos#insecticidas' },
-  { icon: 'leaf', label: 'Fungicidas', href: '/productos#fungicidas' },
+  {
+    icon: 'badge-herbicidas',
+    label: 'Herbicidas',
+    href: '/productos#herbicidas',
+    image: '/categoria-herbicidas.png',
+  },
+  {
+    icon: 'badge-coadyuvantes',
+    label: 'Coadyuvantes',
+    href: '/productos#coadyuvantes',
+    image: '/categoria-coadyuvantes.png',
+  },
+  {
+    icon: 'badge-insecticidas',
+    label: 'Insecticidas',
+    href: '/productos#insecticidas',
+    image: '/categoria-insecticidas.png',
+  },
+  {
+    icon: 'badge-fungicidas',
+    label: 'Fungicidas',
+    href: '/productos#fungicidas',
+    image: '/categoria-fungicidas.png',
+  },
 ];
 ---
 
@@ -27,25 +50,28 @@ const categorias: Categoria[] = [
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
     {
       categorias.map((categoria) => (
-        <a
-          href={categoria.href}
-          class="group relative flex aspect-[3/4] flex-col items-center justify-end overflow-hidden rounded-card bg-prochem-gray p-5 text-center"
-        >
-          {/* PENDIENTE: reemplazar por la foto real de fondo de esta categoría */}
-          <div class="absolute inset-0 bg-gradient-to-b from-prochem-dark/10 via-prochem-dark/40 to-prochem-dark/80" aria-hidden="true" />
+        <div class="relative flex aspect-[3/4] flex-col items-center justify-end overflow-hidden rounded-button p-5 text-center">
+          <img
+            src={categoria.image}
+            alt={categoria.label}
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-prochem-dark/50 to-prochem-dark" aria-hidden="true" />
 
-          <span class="relative mb-auto mt-6 flex h-14 w-14 items-center justify-center rounded-full bg-prochem-accent text-prochem-dark">
-            <Icon name={categoria.icon} class="h-6 w-6" />
-          </span>
+          <Icon name={categoria.icon} class="relative h-14 w-14" />
 
-          <span class="relative font-heading text-base font-bold text-white">
+          <span class="relative mt-4 font-heading text-base font-bold text-white">
             {categoria.label}
           </span>
-          <span class="relative mt-3 inline-flex items-center gap-1 rounded-lg bg-prochem-accent px-4 py-2 font-heading text-sm font-bold text-prochem-dark transition-transform group-hover:scale-105">
+          <a
+            href={categoria.href}
+            class="relative mt-3 inline-flex items-center gap-2 rounded-button bg-prochem-accent px-5 py-2.5 font-heading text-sm font-bold text-white transition-all hover:scale-105 hover:bg-prochem-yellow hover:text-prochem-dark"
+          >
             Ver Más
-            <Icon name="arrow-right" class="h-3.5 w-3.5" />
-          </span>
-        </a>
+            <Icon name="arrow-right-circle" class="h-4 w-4" />
+          </a>
+        </div>
       ))
     }
   </div>

@@ -1,15 +1,14 @@
 ---
 // Hero real del frame "INICIO" (Home) en Figma — verificado navegando el
-// archivo: título, bajada y CTA "Ver Más" son texto exacto. Reutiliza
-// hero-campo.png (misma foto de campo que ya estaba en el proyecto) porque
-// no se pudo descargar el asset original desde Figma en esta sesión.
+// archivo: título, bajada y CTA "Ver Más" son texto exacto. Foto de fondo
+// real de la planta de Prochem Bio, provista por el usuario.
 import Icon from './Icon.astro';
 ---
 
 <section class="relative flex min-h-[480px] items-center overflow-hidden sm:min-h-[560px]">
   <img
-    src="/hero-campo.png"
-    alt="Campo de cultivo, sector agroindustrial"
+    src="/hero-inicio-planta.png"
+    alt="Vista aérea de la planta industrial de Prochem Bio"
     class="absolute inset-0 h-full w-full object-cover"
     loading="eager"
     fetchpriority="high"
@@ -29,10 +28,10 @@ import Icon from './Icon.astro';
       </p>
       <a
         href="/productos"
-        class="mt-8 inline-flex items-center gap-2 rounded-lg bg-prochem-accent px-6 py-3 font-heading text-base font-bold text-prochem-dark transition-transform hover:scale-[1.03]"
+        class="mt-8 inline-flex items-center gap-3 rounded-button bg-prochem-accent px-7 py-3.5 font-heading text-lg font-bold text-white transition-all hover:scale-[1.03] hover:bg-prochem-yellow hover:text-prochem-dark"
       >
         Ver Más
-        <Icon name="arrow-right" class="h-4 w-4" />
+        <Icon name="arrow-right-circle" class="h-6 w-6" />
       </a>
     </div>
   </div>

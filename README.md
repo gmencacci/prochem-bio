@@ -94,17 +94,50 @@ collage de fotos), íconos correctos (globe/filter/droplet), y la franja de
 3 valores con fondos alternados (verde oscuro/blanco/amarillo) que faltaba
 por completo.
 
+**Fotos de Categorías:** el usuario proveyó las 4 fotos reales de fondo
+(Herbicidas, Coadyuvantes, Insecticidas, Fungicidas) — están en
+`public/categoria-*.png` y ya integradas en `Categorias.astro`.
+
+**Foto del Hero de Home:** el usuario proveyó la foto aérea real de la
+planta industrial de Prochem Bio — está en `public/hero-inicio-planta.png`
+y ya integrada en `HeroHome.astro`.
+
+**Íconos insignia de Categorías:** el usuario proveyó los 4 SVG exactos de
+Figma (círculo verde + gráfico amarillo) — reemplazan los íconos genéricos
+inventados. Ver `badge-herbicidas` / `badge-coadyuvantes` /
+`badge-insecticidas` / `badge-fungicidas` en `Icon.astro`.
+
+**Ícono del botón "Ver Más":** el usuario proveyó el SVG exacto (flecha en
+círculo) — es `arrow-right-circle` en `Icon.astro`. Todos los botones "Ver
+Más" del sitio usan el mismo ícono, el mismo radio (8px) y el mismo estado
+hover (pasan a `bg-prochem-yellow` / `text-prochem-dark`, igual que el botón
+"Contacto" del header).
+
+**Collage de fotos de Servicios:** el usuario proveyó las 5 fotos reales
+(depósito, laboratorio, sala de control, pipeta, campo) por separado — están
+en `public/servicios-foto-*.png`. Se ubicaron con las coordenadas exactas
+(x/y/ancho/alto) que traía el SVG que Figma exportó para ese collage,
+recalculadas en % sobre el bounding box real de las 5 fotos (ver
+`fotosCollage` en `Servicios.astro`), no estimadas a ojo desde una captura.
+También se corrigió el título real "Producción para Terceros" (antes decía
+"Contract Manufacturing" por error), se sacó el círculo negro alrededor de
+los íconos, se alineó el botón "Ver Más" con los párrafos (no con los
+íconos), y se ajustó el ancho de columnas del layout (texto:imagen ≈ 1.4:1).
+
+**Íconos de Servicios:** el usuario proveyó los 3 SVG exactos (globe,
+filter, droplet) — reemplazan los íconos genéricos que se habían dibujado a
+mano. Se actualizaron en `Icon.astro` (afecta también a Valores.astro y
+ValoresDestacados.astro, que reutilizan esos mismos nombres de ícono).
+
+**Franja de Valores destacados:** el usuario proveyó la foto real de fondo
+(brote creciendo en la tierra) — está en `public/valores-destacados-fondo.jpg`.
+Las 3 tarjetas se rediseñaron para sobresalir por arriba de la foto (mitad
+superior sobre blanco, mitad inferior sobre la foto), con radio de 8px y
+separación mínima entre ellas, siguiendo instrucciones puntuales del
+usuario sobre el layout real de Figma.
+
 ## Pendiente antes de producción
 
-- **Fotos reales pendientes** (no se pudieron descargar de Figma, rate limit
-  del conector — hoy son placeholders grises marcados en el código, no fotos
-  inventadas):
-  - 4 fotos de fondo de las tarjetas de Categorías (Herbicidas, Coadyuvantes,
-    Insecticidas, Fungicidas).
-  - Collage de fotos de la sección Servicios (laboratorio, planta, campo).
-  - Foto de hoja a todo el ancho debajo de la franja de Valores destacados.
-  - El Hero de Home reutiliza `hero-campo.png` (la misma foto que ya estaba en
-    el proyecto) porque no se pudo descargar la foto real del frame INICIO.
 - El párrafo de "Soluciones que impulsan la industria" quedó cortado en
   "...técnicamente…" porque el panel de contenido de Figma truncó el texto;
   confirmar la frase final exacta.
