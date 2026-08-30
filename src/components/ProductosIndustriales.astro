@@ -1,0 +1,54 @@
+---
+// Sección "Productos Industriales" del frame PRODUCTOS — heading, bajada y
+// las 2 tarjetas verificados en Figma (mismo estilo de tarjeta oscura que
+// "Contract Manufacturing", con el mismo subtítulo repetido "Producción
+// para Terceros").
+interface ProductoIndustrial {
+  title: string;
+}
+
+const productos: ProductoIndustrial[] = [
+  { title: 'Productos para la industria papelera.' },
+  { title: 'Auxiliares para industria textil.' },
+];
+---
+
+<section class="bg-white">
+  <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
+    <p class="font-heading text-sm font-bold uppercase tracking-wide text-prochem-accent">
+      Servicios Y Productos
+    </p>
+    <h2 class="mt-3 font-heading text-3xl font-bold leading-tight text-prochem-dark sm:text-4xl">
+      Productos Industriales
+    </h2>
+    <p class="mt-4 max-w-[640px] text-base leading-relaxed text-prochem-dark/70">
+      <span class="font-bold text-prochem-dark">Aplicación:</span> Mejora de
+      eficiencia en procesos industriales específicos.
+    </p>
+
+    <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {
+        productos.map((producto) => (
+          <div class="flex flex-col rounded-card bg-prochem-dark p-8 text-white">
+            <p class="text-sm font-bold text-white/70">Servicios</p>
+            <p class="mt-1 text-sm text-white/70">Producción para Terceros</p>
+            <h3 class="mt-6 font-heading text-2xl font-bold leading-tight">
+              {producto.title}
+            </h3>
+            <a
+              href="/contacto"
+              class="mt-8 inline-flex w-fit items-center rounded-button bg-prochem-accent px-6 py-2.5 font-heading text-sm font-bold text-white transition-all hover:bg-prochem-yellow hover:text-prochem-dark"
+            >
+              Contactar
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 max-w-[640px] text-base leading-relaxed text-prochem-dark/70">
+      Desarrollo de productos auxiliares para la industria textil y
+      papelera.
+    </p>
+  </div>
+</section>

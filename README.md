@@ -29,19 +29,28 @@ Deploy: conectar el repo a Cloudflare Pages con:
 src/
   components/   → una sección/bloque de UI por archivo (Header, Hero, Valores, etc.)
   layouts/      → Layout.astro (shell HTML + meta tags + fuentes)
-  pages/        → una ruta por archivo (index.astro = Home, nosotros.astro = Quienes Somos)
+  pages/        → una ruta por archivo (index.astro = Home, nosotros.astro = Quienes Somos, productos.astro = Productos)
   styles/       → global.css (Tailwind + estilos base)
 public/         → assets estáticos (logo, favicon, imágenes)
 ```
 
 **Home** (`index.astro`, frame "INICIO" en Figma): HeroHome, Categorias,
-Servicios, ValoresDestacados.
+Servicios, ValoresDestacados, Noticias, NormasISOHome.
 
 **Quienes Somos** (`nosotros.astro`, frame "NOSOTROS" en Figma): Hero
 ("Compromiso Prochem"), Valores, Logística, Soluciones, Propósito, Historia,
 Normas ISO.
 
-Header y Footer son compartidos por ambas páginas.
+**Productos** (`productos.astro`, frame "PRODUCTOS" en Figma): ProductosHero
+("Nuestros Servicios Y Productos"), ServiciosDetalle (3 tarjetas: Formulación
+y Fraccionado / Contract Manufacturing / Investigación Y Desarrollo I+D, con
+checklist y botón "Contactar"), ProductosFitosanitarios (reutiliza la
+grilla de 4 categorías de Categorias.astro), ProductosIndustriales (2
+tarjetas: Productos para la industria papelera / Auxiliares para industria
+textil), NormasISOHome (la misma sección que en el Home — es un frame
+distinto en Figma pero con contenido idéntico).
+
+Header y Footer son compartidos por todas las páginas.
 
 ## Tokens de diseño (`tailwind.config.mjs`)
 
@@ -63,6 +72,10 @@ Colores extraídos del archivo de Figma:
 - [x] Home real: Hero "Tecnología E Innovación", Categorías de producto,
       Servicios (Contract Manufacturing / Formulación y Fraccionado /
       I+D), franja de 3 valores destacados
+- [x] Noticias (3 novedades reales de la comunidad, con foto propia)
+- [x] Normas ISO del Home (3 certificaciones TÜV NORD + logos de CIAFA,
+      CampoLimpio y SENASA) — distinta de la sección "Normas ISO" de
+      Quienes Somos, que vive en un frame de Figma separado
 - [x] Quienes Somos: Hero "Compromiso Prochem", Valores corporativos (6 tarjetas)
 - [x] Logística y Almacenamiento
 - [x] Soluciones que impulsan la industria
@@ -70,6 +83,9 @@ Colores extraídos del archivo de Figma:
 - [x] Historia (timeline con 3 hitos reales: 1998, 2000, 2026)
 - [x] Normas ISO (certificaciones TÜV NORD + SENASA)
 - [x] Footer (dirección, teléfonos, email y redes reales)
+- [x] Productos: Hero, 3 tarjetas de Servicios con checklist, grilla de
+      Productos Fitosanitarios (4 categorías), 2 tarjetas de Productos
+      Industriales, Normas ISO — falta la foto real del hero (ver pendientes)
 
 Todo el contenido de arriba fue verificado navegando manualmente el archivo
 real de Figma (`web-Prochem-bio`, página "Propuesta #002") — no es copy
@@ -136,11 +152,60 @@ superior sobre blanco, mitad inferior sobre la foto), con radio de 8px y
 separación mínima entre ellas, siguiendo instrucciones puntuales del
 usuario sobre el layout real de Figma.
 
+**Sección "Noticias":** el usuario pasó 3 fotos reales (equipo de fútbol con
+pecheras de Prochem Bio, foto de un podio de maratón y una captura de una
+historia de Instagram de "Casa Familia Rosario" agradeciendo una donación).
+Las 2 capturas de teléfono se recortaron (se sacó el chrome de WhatsApp/
+Instagram) para dejar solo la foto, tal como se ve en el diseño de Figma —
+están en `public/noticias-*.png`. El texto de las 3 tarjetas (tag, fecha,
+título, subtítulo y descripción) se verificó con la herramienta de búsqueda
+de texto de Figma para no adivinar ninguna palabra, incluyendo frases largas
+que quedaban cortadas visualmente por el tamaño de pantalla del navegador.
+
+**Sección "Normas ISO" del Home:** distinta de la sección del mismo nombre
+en Quienes Somos (son dos frames separados en Figma, con contenido
+diferente). La del Home tiene dos grillas de 3 columnas: arriba, 3 imágenes
+reales de certificaciones TÜV NORD (TÜV NORD BRASIL / ISO 14001, TÜV NORD
+CERT GmbH / ISO 45001, TÜV NORD BRASIL / ISO 9001) que pasó el usuario —
+`public/normas-tuvnord-*.jpg`; abajo, los 3 logos reales de CIAFA,
+CampoLimpio y SENASA en `public/normas-*.png`.
+
+**Footer:** reconstruido contra Figma después de encontrar varias
+diferencias con la versión anterior (que tenía datos inventados): la
+dirección real es "Av. Azucena Villaflor 645, Parque Comirsa. Ramallo
+(2915), Buenos Aires, Argentina." (no "San Nicolás"), un solo teléfono
+"+54 9 11 6462-8412" (no dos números con otro formato), y no hay párrafo
+debajo del logo ni línea de copyright — no existen en el diseño real. El
+logo "PROCHEM bio -Industria Argentina-" es el SVG exacto que pasó el
+usuario (`public/logo-footer.svg`). Los enlaces de navegación (Home,
+Productos, Sobre Nosotros, Blog) llevan un ícono de flecha externa
+(`external-link` en `Icon.astro`), y el ícono de LinkedIn tiene fondo verde
+sólido mientras que Instagram y YouTube son solo borde, sin relleno.
+
+**Página "Productos":** el frame de Figma es mucho más grande de lo que
+sugería el resto del sitio — además de repetir los 3 servicios del Home
+(ahora con checklist y botón "Contactar" propio), tiene una sección
+"Productos Fitosanitarios" (reutiliza la grilla de 4 categorías del Home)
+y una sección "Productos Industriales" con 2 tarjetas nuevas ("Productos
+para la industria papelera" y "Auxiliares para industria textil"), más la
+misma sección "Normas ISO" del Home al final. El fondo del hero son dos
+fotos reales apiladas sin espacio entre sí (persona con guantes de nitrilo
++ hilera de cultivos, ambas provistas por el usuario) para que se vean
+como una sola imagen continua; las 3 tarjetas de Servicios flotan encima,
+tapando la costura entre ambas — mismo recurso visual que
+ValoresDestacados en el Home, verificado contra el preview real de Figma. El subtítulo "Producción
+para Terceros" se repite igual en las 3 tarjetas de Servicios y en las 2
+de Productos Industriales — así está en el Figma real, no es un error de
+tipeo nuestro (sí se corrigió el typo "indutrial" → "industrial" en un
+ítem de checklist, por ser un error obvio de tipeo). Las 2 fotos del hero (persona con guantes de nitrilo y foto de campo) ya
+las pasó el usuario y están en `public/productos-hero.png` y
+`public/productos-hero-campo.png`.
+
 ## Pendiente antes de producción
 
 - El párrafo de "Soluciones que impulsan la industria" quedó cortado en
   "...técnicamente…" porque el panel de contenido de Figma truncó el texto;
   confirmar la frase final exacta.
-- Definir rutas reales de Productos, Blog y Contacto (hoy son placeholders).
+- Definir rutas reales de Blog y Contacto (hoy son placeholders).
 - Conectar el formulario de contacto a un servicio de envío (Formspree, Web3Forms
   o una Cloudflare Function) — ver conversación con Claude para opciones.

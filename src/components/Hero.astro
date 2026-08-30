@@ -1,28 +1,458 @@
 ---
-// Hero del frame "NOSOTROS" (Quienes Somos) en Figma — verificado navegando
-// el archivo real: el título "Compromiso Prochem" es el heading exacto que
-// encabeza el bloque de Valores Corporativos. No hay copy de subtítulo
-// confirmado debajo del título en el diseño (la sección pasa directo a las
-// tarjetas de valores), así que no se agrega ninguno inventado.
+const cards = [
+  {
+    title: 'Excelencia Operativa',
+    text: 'Estandarización, control estadístico de procesos y mejora continua como ejes de la eficiencia corporativa.',
+    color: 'dark',
+  },
+  {
+    title: 'Sustentabilidad',
+    text: 'Gestión responsable de recursos, reducción del impacto ambiental y cumplimiento de normativas vigentes.',
+    color: 'light',
+  },
+  {
+    title: 'Innovación Tecnológica',
+    text: 'Aplicación sistemática de I+D para el desarrollo de nuevas formulaciones y optimización de procesos.',
+    color: 'yellow',
+  },
+  {
+    title: 'Orientación al Cliente (B2B)',
+    text: 'Desarrollo de soluciones técnicas específicas conforme a requerimientos de cada cliente.',
+    color: 'yellow',
+  },
+  {
+    title: 'Agilidad Organizacional',
+    text: 'Capacidad de adaptación a variaciones en demanda, formulaciones y escalas productivas.',
+    color: 'green',
+  },
+  {
+    title: 'Mejora Continua',
+    text: 'Optimización de procesos y soluciones para alcanzar mayores niveles de calidad y eficiencia.',
+    color: 'dark',
+  },
+];
 ---
 
-<section class="relative flex min-h-[560px] items-center overflow-hidden sm:min-h-[640px] lg:min-h-[799px]">
+<section class="commitment">
+
+  <!-- =========================================
+       HERO / IMAGEN SUPERIOR
+       Reemplazá este div por tu imagen
+       ========================================= -->
+
+  <div class="commitment__hero">
+
+    <!-- Imagen de fondo -->
+    <div class="commitment__image">
   <img
     src="/hero-campo.png"
     alt="Campo de cultivo, sector agroindustrial"
-    class="absolute inset-0 h-full w-full object-cover"
+    
     loading="eager"
     fetchpriority="high"
   />
+    </div>
 
-  <!-- Overlay oscuro para asegurar contraste del texto sobre la imagen -->
-  <div class="absolute inset-0 bg-gradient-to-r from-prochem-dark/80 via-prochem-dark/50 to-transparent" aria-hidden="true"></div>
+    <!-- Overlay para mejorar contraste -->
+    <div class="commitment__overlay"></div>
 
-  <div class="relative mx-auto w-full max-w-[1280px] px-6 sm:px-10 lg:px-[66px]">
-    <div class="max-w-[541px]">
-      <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-[56px]">
-        Compromiso Prochem
+    <!-- Texto sobre la imagen -->
+    <div class="commitment__intro">
+      <span class="commitment__eyebrow">
+        Valores Corporativos
+      </span>
+
+      <h1 class="commitment__title">
+        Compromiso<br />
+        Prochem
       </h1>
     </div>
+
+
+    <!-- =========================================
+         CARDS FLOTANTES
+         ========================================= -->
+
+    <div class="commitment__cards">
+
+      {cards.map((card) => (
+        <article class={`commitment__card commitment__card--${card.color}`}>
+
+          <div class="commitment__card-icon">
+            <!-- Icono -->
+            <span></span>
+          </div>
+
+          <div class="commitment__card-body">
+
+            <h2 class="commitment__card-title">
+              {card.title}
+            </h2>
+
+            <p class="commitment__card-text">
+              {card.text}
+            </p>
+
+          </div>
+
+        </article>
+      ))}
+
+    </div>
+
   </div>
+
+
+  <!-- =========================================
+       ESPACIO DEBAJO DE LAS CARDS
+
+       Acá después podés colocar la siguiente
+       sección / imagen.
+       ========================================= -->
+
+  <div class="commitment__below">
+
+    <!--
+      Próxima imagen / sección
+
+      <img src="/images/..." alt="" />
+    -->
+
+  </div>
+
 </section>
+
+
+<style>
+
+  /* =========================================
+     CONTENEDOR GENERAL
+     ========================================= */
+
+  .commitment {
+    position: relative;
+    width: 100%;
+  }
+
+
+  /* =========================================
+     HERO
+     ========================================= */
+
+  .commitment__hero {
+    position: relative;
+
+    width: 100%;
+    min-height: 520px;
+
+    isolation: isolate;
+  }
+
+
+  /* =========================================
+     IMAGEN
+     ========================================= */
+
+  .commitment__image {
+    position: absolute;
+    inset: 0;
+
+    z-index: -2;
+
+    overflow: hidden;
+
+    background: #dfe5df;
+  }
+
+  .commitment__image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    /* object-fit: cover; */
+    object-position: center;
+  }
+
+
+  /* =========================================
+     OVERLAY
+     ========================================= */
+
+  .commitment__overlay {
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    /* background:
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.88) 0%,
+        rgba(255, 255, 255, 0.55) 38%,
+        rgba(255, 255, 255, 0.05) 75%
+      ); */
+  }
+
+
+  /* =========================================
+     TEXTO
+     ========================================= */
+
+  .commitment__intro {
+    position: relative;
+
+    width: min(1200px, calc(100% - 80px));
+
+    margin: 0 auto;
+
+    padding-top: 105px;
+  }
+
+  .commitment__eyebrow {
+    display: block;
+
+    margin-bottom: 14px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #123f38;
+  }
+
+  .commitment__title {
+    margin: 0;
+
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 0.98;
+
+    font-weight: 700;
+
+    letter-spacing: -0.04em;
+
+    color: #123f38;
+  }
+
+
+  /* =========================================
+     CARDS
+     ========================================= */
+
+  .commitment__cards {
+    position: absolute;
+
+    left: 50%;
+    bottom: -270px;
+
+    transform: translateX(-50%);
+
+    width: min(1080px, calc(100% - 100px));
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 5px;
+
+    z-index: 5;
+  }
+
+
+  /* =========================================
+     CARD
+     ========================================= */
+
+  .commitment__card {
+    min-height: 145px;
+
+    padding: 18px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 3px;
+
+    box-sizing: border-box;
+  }
+
+
+  /* =========================================
+     COLORES
+     ========================================= */
+
+  .commitment__card--dark {
+    background: #13322C;
+    color: #FFFFFF;
+  }
+
+  .commitment__card--light {
+    background: #FFFFFF;
+    color: #13322C;
+  }
+
+  .commitment__card--yellow {
+    background: #FAD300;
+    color: #123f38;
+  }
+
+  .commitment__card--green {
+    background: #84B527;
+    color: #123f38;
+  }
+
+
+  /* =========================================
+     ICONO
+     ========================================= */
+
+  .commitment__card-icon {
+    width: 22px;
+    height: 22px;
+
+    margin-bottom: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /*
+    Placeholder simple para los iconos.
+    Después podés reemplazarlo por Lucide,
+    SVG, iconos propios, etc.
+  */
+
+  .commitment__card-icon span {
+    display: block;
+
+    width: 10px;
+    height: 10px;
+
+    border: 1.5px solid currentColor;
+
+    border-radius: 50%;
+  }
+
+
+  /* =========================================
+     CONTENIDO CARD
+     ========================================= */
+
+  .commitment__card-body {
+    margin-top: auto;
+  }
+
+  .commitment__card-title {
+    margin: 0 0 5px;
+
+    font-size: 24px;
+    line-height: 1.15;
+
+    font-weight: 600;
+  }
+
+  .commitment__card-text {
+    margin: 0;
+
+    max-width: 290px;
+
+    font-size: 16px;
+    line-height: 1.3;
+
+    opacity: 0.95;
+  }
+
+
+  /* =========================================
+     ESPACIO DEBAJO
+     ========================================= */
+
+  .commitment__below {
+    height: 230px;
+
+    /*
+      Este espacio existe porque las cards
+      sobresalen 145px del hero.
+
+      Acá después podés poner la siguiente
+      imagen/sección.
+    */
+
+    background: #f4f4ee;
+  }
+
+
+  /* =========================================
+     TABLET
+     ========================================= */
+
+  @media (max-width: 900px) {
+
+    .commitment__hero {
+      min-height: 580px;
+    }
+
+    .commitment__intro {
+      width: calc(100% - 50px);
+    }
+
+    .commitment__cards {
+      width: calc(100% - 50px);
+
+      bottom: -190px;
+
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .commitment__card {
+      min-height: 170px;
+    }
+
+    .commitment__below {
+      height: 290px;
+    }
+
+  }
+
+
+  /* =========================================
+     MOBILE
+     ========================================= */
+
+  @media (max-width: 600px) {
+
+    .commitment__hero {
+      min-height: 620px;
+    }
+
+    .commitment__intro {
+      width: calc(100% - 40px);
+
+      padding-top: 70px;
+    }
+
+    .commitment__title {
+      font-size: 44px;
+    }
+
+    .commitment__cards {
+      width: calc(100% - 30px);
+
+      bottom: -330px;
+
+      grid-template-columns: 1fr;
+
+      gap: 5px;
+    }
+
+    .commitment__card {
+      min-height: 150px;
+    }
+
+    .commitment__below {
+      height: 350px;
+    }
+
+  }
+
+</style>

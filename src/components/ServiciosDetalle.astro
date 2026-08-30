@@ -1,0 +1,107 @@
+---
+// Sección de 3 tarjetas de Servicios del frame PRODUCTOS — expande los 3
+// servicios ya presentes en el Home (Producción para Terceros, Formulación
+// y Fraccionado, I+D) con checklist y botón "Contactar" propio. Verificado
+// navegando Figma: el subtítulo "Producción para Terceros" se repite igual
+// en las 3 tarjetas (así está en el diseño real, no es un error de copia).
+// Fondo alternado blanco/verde oscuro, tal cual el diseño.
+import Icon from './Icon.astro';
+
+interface ServicioDetalle {
+  title: string;
+  items: string[];
+  theme: 'light' | 'dark';
+}
+
+const servicios: ServicioDetalle[] = [
+  {
+    title: 'Formulación Y Fraccionado',
+    items: [
+      'Adaptación a distintos formatos comerciales e industriales.',
+      'Escalado industrial.',
+    ],
+    theme: 'light',
+  },
+  {
+    title: 'Contract Manufacturing',
+    items: [
+      'Desarrollo o transferencia de formulaciones.',
+      'Producción bajo especificaciones del cliente.',
+      'Control de calidad.',
+      'Fraccionado y packaging.',
+      'Logística integrada.',
+    ],
+    theme: 'dark',
+  },
+  {
+    title: 'Investigación Y Desarrollo (I+D)',
+    items: [
+      'Desarrollo de nuevos productos.',
+      'Reformulación y optimización.',
+      'Mejora de rendimiento técnico.',
+    ],
+    theme: 'light',
+  },
+];
+---
+
+<section class="relative z-10 -mt-[260px] bg-transparent pb-16 sm:-mt-[414px]">
+  <div class="mx-auto w-full max-w-[1280px] px-6 sm:px-10 lg:px-[66px]">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:items-center">
+      {
+        servicios.map((servicio) => (
+          <div
+            class:list={[
+              'flex flex-col rounded-button p-8 shadow-xl',
+              servicio.theme === 'dark'
+                ? 'bg-prochem-dark text-white sm:-my-8 sm:py-18'
+                : 'bg-white text-prochem-dark',
+            ]}
+          >
+            <p
+              class:list={[
+                'text-[16px] font-bold',
+                servicio.theme === 'dark' ? 'text-white/70' : 'font-sans leading-7 font-black tracking-normal text-prochem-dark',
+              ]}
+            >
+              Servicios
+            </p>
+            <p
+              class:list={[
+                'mt-1 text-[16px]',
+                servicio.theme === 'dark' ? 'text-white/70' : 'font-sans leading-[38px] font-normal tracking-normal text-prochem-dark',
+              ]}
+            >
+              Producción para Terceros
+            </p>
+
+            <h3 class="mt-6 font-heading text-[32px] font-bold leading-tight">
+              {servicio.title}
+            </h3>
+
+            <ul class="mt-6 space-y-3">
+              {servicio.items.map((item) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <Icon
+                    name="check-circle"
+                    class={`mt-0.5 h-4 w-4 shrink-0 ${servicio.theme === 'dark' ? 'text-prochem-accent' : 'text-prochem-accent'}`}
+                  />
+                  <span class={servicio.theme === 'dark' ? 'text-white/90' : 'text-prochem-dark/80'}>
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="/contacto"
+              class="mt-8 inline-flex w-fit items-center rounded-button bg-prochem-accent px-6 py-2.5 font-heading text-sm font-bold text-white transition-all hover:bg-prochem-yellow hover:text-prochem-dark"
+            >
+              Contactar
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

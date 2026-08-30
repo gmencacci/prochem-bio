@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProductosHero from '../components/ProductosHero.astro';
+import ServiciosDetalle from '../components/ServiciosDetalle.astro';
+import ProductosFitosanitarios from '../components/ProductosFitosanitarios.astro';
+import ProductosIndustriales from '../components/ProductosIndustriales.astro';
+import NormasISOHome from '../components/NormasISOHome.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Productos">
+  <Header />
+
+  <main>
+    <ProductosHero />
+    <ServiciosDetalle />
+    <ProductosFitosanitarios />
+    <ProductosIndustriales />
+    <NormasISOHome />
+  </main>
+
+  <Footer />
+</Layout>
