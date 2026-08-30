@@ -1,7 +1,8 @@
 ---
-// Footer real del frame NOSOTROS (aparece también al final de INICIO).
-// Dirección, teléfonos, email y redes verificados textualmente contra
-// Figma. Nav links iguales a los del Header.
+// Footer real del frame INICIO (se repite igual en el resto de las páginas).
+// Verificado navegando el archivo de Figma: 3 filas (logo+redes / contacto /
+// enlaces), sin párrafo debajo del logo y sin línea de copyright — no
+// estaban en el diseño real, se habían inventado en una versión anterior.
 import Icon from './Icon.astro';
 
 interface NavLink {
@@ -12,102 +13,73 @@ interface NavLink {
 const links: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'Productos', href: '/productos' },
-  { label: 'Quienes Somos', href: '/nosotros' },
+  { label: 'Sobre Nosotros', href: '/nosotros' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Contacto', href: '/contacto' },
 ];
-
-const year = new Date().getFullYear();
 ---
 
 <footer class="bg-prochem-dark">
   <div class="mx-auto w-full max-w-[1280px] px-6 py-16 sm:px-10 lg:px-[66px]">
-    <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="lg:col-span-2">
-        <img
-          src="/logo-prochem.svg"
-          alt="Prochem Bio"
-          class="h-10 w-auto brightness-0 invert"
-          width="193"
-          height="48"
-        />
-        <p class="mt-5 max-w-[360px] text-sm leading-relaxed text-white/70">
-          Soluciones químicas para los sectores agroindustrial e industrial.
-        </p>
+    <div class="flex flex-wrap items-center justify-between gap-6">
+      <img src="/logo-footer.svg" alt="Prochem Bio - Industria Argentina" class="h-16 w-auto" />
 
-        <div class="mt-6 flex items-center gap-3">
-          <a
-            href="#"
-            aria-label="LinkedIn"
-            class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-prochem-accent hover:text-prochem-dark"
-          >
-            <Icon name="linkedin" class="h-4 w-4" />
-          </a>
-          <a
-            href="#"
-            aria-label="Instagram"
-            class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-prochem-accent hover:text-prochem-dark"
-          >
-            <Icon name="instagram" class="h-4 w-4" />
-          </a>
-          <a
-            href="#"
-            aria-label="YouTube"
-            class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-prochem-accent hover:text-prochem-dark"
-          >
-            <Icon name="youtube" class="h-4 w-4" />
-          </a>
-        </div>
-      </div>
-
-      <nav aria-label="Enlaces del sitio">
-        <h3 class="font-heading text-sm font-bold uppercase tracking-wide text-white/50">
-          Navegación
-        </h3>
-        <ul class="mt-5 space-y-3">
-          {
-            links.map((link) => (
-              <li>
-                <a href={link.href} class="text-sm text-white/80 transition-colors hover:text-white">
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-
-      <div>
-        <h3 class="font-heading text-sm font-bold uppercase tracking-wide text-white/50">
-          Contacto
-        </h3>
-        <ul class="mt-5 space-y-3 text-sm text-white/80">
-          <li class="flex items-start gap-2">
-            <Icon name="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-prochem-accent" />
-            <span>
-              Av. San Nicolás N° 645, Parque Comirsa.<br />
-              Ramallo (2915), Buenos Aires, Argentina.
-            </span>
-          </li>
-          <li class="flex items-center gap-2">
-            <Icon name="phone" class="h-4 w-4 shrink-0 text-prochem-accent" />
-            <span>
-              +54 (0336) 4463033<br />
-              +54 (0336) 4460707
-            </span>
-          </li>
-          <li class="flex items-center gap-2">
-            <Icon name="mail" class="h-4 w-4 shrink-0 text-prochem-accent" />
-            info@prochembio.com.ar
-          </li>
-        </ul>
+      <div class="flex items-center gap-3">
+        <a
+          href="#"
+          aria-label="LinkedIn"
+          class="flex h-9 w-9 items-center justify-center rounded-md bg-prochem-accent text-white transition-opacity hover:opacity-80"
+        >
+          <Icon name="linkedin" class="h-4 w-4" />
+        </a>
+        <a
+          href="#"
+          aria-label="Instagram"
+          class="flex h-9 w-9 items-center justify-center rounded-md border border-white/40 text-white transition-colors hover:border-white"
+        >
+          <Icon name="instagram" class="h-4 w-4" />
+        </a>
+        <a
+          href="#"
+          aria-label="YouTube"
+          class="flex h-9 w-9 items-center justify-center rounded-md border border-white/40 text-white transition-colors hover:border-white"
+        >
+          <Icon name="youtube" class="h-4 w-4" />
+        </a>
       </div>
     </div>
 
-    <hr class="mt-12 border-white/10" />
+    <div class="mt-10 flex flex-wrap items-start justify-between gap-x-6 gap-y-6 text-sm text-white/80">
+      <div class="flex items-start gap-2">
+        <Icon name="map-pin" class="mt-0.5 h-6 w-6 shrink-0 text-white" />
+        <span>
+          Av. Azucena Villaflor 645, Parque Comirsa.<br />
+          Ramallo (2915), Buenos Aires, Argentina.
+        </span>
+      </div>
+      <div class="flex items-center gap-2">
+        <Icon name="phone" class="h-6 w-6 shrink-0 text-white" />
+        <span>+54 9 11 6462-8412</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <Icon name="mail" class="h-6 w-6 shrink-0 text-white" />
+        <span>info@prochembio.com.ar</span>
+      </div>
+    </div>
 
-    <p class="mt-6 text-center text-xs text-white/50">
-      © {year} Prochem Bio S.A. Todos los derechos reservados.
-    </p>
+    <hr class="mt-10 border-white/10" />
+
+    <nav aria-label="Enlaces del sitio" class="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="inline-flex items-center gap-1.5 text-sm text-white/80 transition-colors hover:text-white"
+          >
+            {link.label}
+            <Icon name="external-link" class="h-3.5 w-3.5" />
+          </a>
+        ))
+      }
+    </nav>
   </div>
 </footer>
