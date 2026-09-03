@@ -4,37 +4,42 @@
 // el usuario) que combina la escena de laboratorio y el campo de cultivo ya
 // fusionados en una sola imagen; las 3 tarjetas de Servicios (en
 // ServiciosDetalle.astro) flotan encima de la parte inferior.
+// La imagen va con inset-0 sobre una sección de alto fijo por breakpoint
+// (mismo patrón que Hero.astro/HeroHome/BlogHero) — antes esta era la única
+// sección que dejaba el alto atado al aspect-ratio de la foto (w-full, sin
+// posicionamiento absoluto), lo que hacía que la altura de la imagen
+// cambiara de forma continua con el ancho efectivo del viewport mientras el
+// título quedaba en texto de tamaño fijo: alcanzaba con angostar un poco el
+// viewport (o el zoom del navegador, que tiene el mismo efecto) para que el
+// título creciera en proporción a la imagen y terminara pisando las
+// tarjetas de Servicios de abajo.
 import { Image } from 'astro:assets';
 import productosHero from '../assets/productos-hero.png';
 ---
 
-<section class="relative overflow-hidden">
-  <div class="relative">
-    <Image
-      src={productosHero}
-      alt="Persona con guantes de nitrilo trabajando en el laboratorio de Prochem Bio"
-      class="min-h-[560px] w-full object-cover"
-      widths={[640, 960, 1280, 1920]}
-      sizes="100vw"
-      format="webp"
-      quality={80}
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="absolute inset-0 flex items-start pt-[176px] sm:pt-[200px]">
-      <div class="mx-auto w-full max-w-[1280px] px-6 text-center sm:px-10 lg:px-[66px]">
-        <p class="font-sans text-[20px] font-bold leading-7 tracking-normal text-center text-prochem-dark">
-          Lo que hacemos
-        </p>
-        <h1 class="mt-3 font-sans text-[64px] font-bold leading-[75px] tracking-normal text-prochem-dark">
-          Nuestros Servicios<br />
-          Y Productos
-        </h1>
-        <p class="mx-auto mt-5 max-w-[436px] font-sans text-[20px] font-normal leading-[35px] tracking-normal text-center text-prochem-dark">
-          Nos posicionamos como socios industrial de compañías nacionales e
-          internacionales.
-        </p>
-      </div>
-    </div>
+<section class="relative flex min-h-[560px] items-center justify-center overflow-hidden pt-24 sm:min-h-[640px] lg:min-h-[799px]">
+  <Image
+    src={productosHero}
+    alt="Persona con guantes de nitrilo trabajando en el laboratorio de Prochem Bio"
+    class="absolute inset-0 h-full w-full object-cover"
+    widths={[640, 960, 1280, 1920]}
+    sizes="100vw"
+    format="webp"
+    quality={80}
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="relative mx-auto w-full max-w-[1280px] px-6 text-center sm:px-10 lg:px-[66px]">
+    <p class="font-sans text-[20px] font-bold leading-7 tracking-normal text-center text-prochem-dark">
+      Lo que hacemos
+    </p>
+    <h1 class="mt-3 font-sans text-[32px] font-bold leading-[38px] tracking-normal text-prochem-dark sm:text-[64px] sm:leading-[75px]">
+      Nuestros Servicios<br />
+      Y Productos
+    </h1>
+    <p class="mx-auto mt-5 max-w-[436px] font-sans text-[20px] font-normal leading-[35px] tracking-normal text-center text-prochem-dark">
+      Nos posicionamos como socios industrial de compañías nacionales e
+      internacionales.
+    </p>
   </div>
 </section>

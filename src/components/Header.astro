@@ -15,7 +15,12 @@ const links: NavLink[] = [
   { label: 'Blog', href: '/blog' },
 ];
 
-const currentPath = Astro.url.pathname;
+// Astro.url.pathname en el build estático final resuelve con barra al final
+// (ej. "/productos/"), pero los href de acá no la llevan — sin normalizar,
+// la comparación exacta nunca matchea y el link activo no se resalta (esto
+// no se nota en el dev server, que evalúa la URL real de cada request).
+const normalizePath = (path: string) => (path.length > 1 ? path.replace(/\/+$/, '') : path);
+const currentPath = normalizePath(Astro.url.pathname);
 ---
 
 <header class="fixed inset-x-0 top-0 z-50 w-full">

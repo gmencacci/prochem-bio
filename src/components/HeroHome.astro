@@ -2,12 +2,18 @@
 // Hero real del frame "INICIO" (Home) en Figma — verificado navegando el
 // archivo: título, bajada y CTA "Ver Más" son texto exacto. Foto de fondo
 // real de la planta de Prochem Bio, provista por el usuario.
+// Alto fijo por breakpoint (mismo patrón que Hero.astro/BlogHero/
+// ProductosHero) en vez de min-h-screen: 100vh es un contenedor "inestable"
+// que se recalcula en vivo con el zoom del navegador (Ctrl+rueda/teclado),
+// mientras el título usa texto de tamaño fijo — eso hacía que el título
+// creciera en proporción a la imagen al zoomear. Con alto fijo, el
+// contenedor no se mueve salvo que cambie el breakpoint.
 import Icon from './Icon.astro';
 import { Image } from 'astro:assets';
 import heroInicioPlanta from '../assets/hero-inicio-planta.png';
 ---
 
-<section class="relative flex min-h-screen items-start pt-[160px] sm:pt-[200px]">
+<section class="relative flex min-h-[560px] items-start overflow-hidden pt-[160px] sm:min-h-[640px] sm:pt-[200px] lg:min-h-[799px]">
   <Image
     src={heroInicioPlanta}
     alt="Vista aérea de la planta industrial de Prochem Bio"
@@ -24,7 +30,7 @@ import heroInicioPlanta from '../assets/hero-inicio-planta.png';
 
   <div class="relative mx-auto w-full max-w-[1280px] px-6 sm:px-10 lg:px-[66px]">
     <div class="max-w-[541px]">
-      <h1 class="font-sans text-[64px] font-bold leading-[75px] tracking-normal text-white">
+      <h1 class="font-sans text-[42px] font-bold leading-[50px] tracking-normal text-white sm:text-[64px] sm:leading-[75px]">
         Tecnología <br>
         E Innovación
       </h1>
