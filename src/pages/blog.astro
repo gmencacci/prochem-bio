@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import BlogHero from '../components/BlogHero.astro';
+import BlogNoticiasComunidad from '../components/BlogNoticiasComunidad.astro';
+import BlogNoticiasEmpresa from '../components/BlogNoticiasEmpresa.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Blog">
+  <Header />
+
+  <main>
+    <BlogHero />
+    <BlogNoticiasComunidad />
+    <BlogNoticiasEmpresa />
+  </main>
+
+  <Footer />
+</Layout>

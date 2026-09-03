@@ -1,7 +1,8 @@
 ---
-// Portado desde la captura "Logística Y Almacenamiento": imagen de fondo de
-// depósito con overlay verde oscuro degradé, eyebrow + título + copy, línea
-// separadora y 3 métricas destacadas.
+// "Logística Y Almacenamiento" del frame NOSOTROS — re-verificada con
+// get_design_context (node 837:7898): es una TARJETA contenida con bordes
+// redondeados (16px) dentro del ancho normal de la página, no una sección
+// a todo el ancho de pantalla como estaba antes.
 
 interface Metrica {
   value: string;
@@ -9,60 +10,64 @@ interface Metrica {
 }
 
 const metricas: Metrica[] = [
-  { value: '30.000.000', label: 'Millones de kilo litros anuales.' },
+  { value: '30 Millones', label: 'De kilo litros anuales.' },
   { value: '8.000', label: 'Metros cuadrados cubiertos para almacenamiento.' },
   { value: '1.500', label: 'Metros cúbicos para almacenamiento a granel.' },
 ];
 ---
 
-<section class="relative overflow-hidden">
-  <img
-    src="/logistica-deposito.png"
-    alt="Depósito de almacenamiento Prochem Bio"
-    class="absolute inset-0 h-full w-full object-cover"
-    loading="lazy"
-  />
+<section class="bg-white">
+  <div class="mx-auto w-full max-w-[1280px] px-6 py-10 sm:px-10 lg:px-[66px]">
+    <div class="relative overflow-hidden rounded-card">
+      <img
+        src="/logistica-deposito.png"
+        alt="Depósito de almacenamiento Prochem Bio"
+        class="absolute inset-0 h-full w-full object-cover"
+        loading="lazy"
+      />
 
-  <!-- Overlay: oscuro parejo a la izquierda para legibilidad del texto,
-       degradé más fuerte hacia abajo (igual que en la captura) -->
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-prochem-dark/70 via-prochem-dark/50 to-prochem-dark/90"
-    aria-hidden="true"
-  >
-  </div>
+      <!-- Degradé verificado en Figma: transparente hasta ~33%, sólido verde
+           oscuro hacia el final (de arriba hacia abajo). -->
+      <div
+        class="absolute inset-0 bg-[linear-gradient(180deg,rgba(217,217,217,0)_33%,rgba(19,50,44,1)_100%)]"
+        aria-hidden="true"
+      >
+      </div>
 
-  <div class="relative mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px] lg:py-28">
-    <div class="max-w-[600px]">
-      <p class="font-heading text-sm font-bold uppercase tracking-wide text-white/90">
-        Nuestro Espacio
-      </p>
+      <div class="relative px-6 py-10 sm:px-[84px] sm:py-[74px]">
+        <div class="max-w-[600px]">
+          <p class="font-sans text-[16px] font-bold leading-7 tracking-normal capitalize text-white">
+            Nuestro Espacio
+          </p>
 
-      <h2 class="mt-3 font-heading text-4xl font-bold leading-tight text-white sm:text-5xl">
-        Logística Y Almacenamiento
-      </h2>
+          <h2 class="mt-3 font-sans text-[48px] font-bold leading-[65px] tracking-normal capitalize text-white">
+            Logística y<br />Almacenamiento
+          </h2>
 
-      <p class="mt-6 text-base leading-relaxed text-white/85 sm:text-lg">
-        Contamos con depósitos acondicionados para el almacenamiento de
-        materia prima y productos terminados a granel y paletizados. Nos
-        permite cumplir con nuestro compromiso de brindar recursos necesarios
-        para alcanzar la satisfacción del cliente.
-      </p>
+          <p class="mt-6 max-w-[516px] font-sans text-[16px] font-normal leading-7 text-white">
+            Contamos con depósitos acondicionados para el almacenamiento de
+            materia prima y productos terminados a granel y paletizados. Nos
+            permite cumplir con nuestro compromiso de brindar recursos
+            necesarios para alcanzar la satisfacción del cliente.
+          </p>
 
-      <hr class="mt-10 border-white/30" />
+          <hr class="mt-[18px] max-w-[516px] border-white/30" />
 
-      <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
-        {
-          metricas.map((metrica) => (
-            <div>
-              <p class="font-heading text-3xl font-bold text-white sm:text-4xl">
-                {metrica.value}
-              </p>
-              <p class="mt-2 text-sm leading-snug text-white/80">
-                {metrica.label}
-              </p>
-            </div>
-          ))
-        }
+          <div class="mt-3 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-[72px]">
+            {
+              metricas.map((metrica) => (
+                <div>
+                  <p class="font-sans text-[36px] font-bold leading-7 capitalize text-white">
+                    {metrica.value}
+                  </p>
+                  <p class="mt-2 font-sans text-[16px] leading-tight text-white">
+                    {metrica.label}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </div>
   </div>

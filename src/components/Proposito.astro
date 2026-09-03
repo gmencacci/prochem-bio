@@ -1,22 +1,40 @@
 ---
-// Sección "Propósito" del frame NOSOTROS. Eyebrow, heading y párrafo
-// verificados textualmente contra Figma. El diseño no tiene un split
-// Misión/Visión: es un único bloque de texto sobre fondo prochem-gray
-// (mismo token que ya estaba documentado en tailwind.config.mjs).
+// Sección "Propósito" del frame NOSOTROS — re-verificada con
+// get_design_context (node 863:10241): tarjeta verde oscuro (texto claro +
+// foto) dentro de un marco gris claro. El párrafo tenía la palabra
+// "confiables" faltante respecto al texto real de Figma.
+// Foto real provista por el usuario, ya sin el margen transparente que
+// traía el PNG original. El contenedor es más bajo que el alto natural de
+// la foto a propósito: con object-cover + object-top, las hojas tocan el
+// borde superior y la tierra queda "cortada" por el borde inferior del div
+// (el mismo efecto que un object-cover normal), en vez de mostrar la foto
+// completa con aire alrededor.
 ---
 
-<section class="bg-prochem-gray">
-  <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
-    <p class="font-heading text-sm font-bold uppercase tracking-wide text-prochem-dark/60">
-      Lo que nos impulsa
-    </p>
-    <h2 class="mt-3 font-heading text-3xl font-bold leading-tight text-prochem-dark sm:text-4xl">
-      Propósito
-    </h2>
-    <p class="mt-6 max-w-[640px] text-base leading-relaxed text-prochem-dark/70 sm:text-lg">
-      Acompañar a nuestros clientes en la mejora continua de sus procesos,
-      aportando conocimiento, innovación y soluciones que impulsen su
-      crecimiento de forma sostenible.
-    </p>
+<section class="bg-white">
+  <div class="mx-auto w-full max-w-[1280px] px-6 py-10 sm:px-10 lg:px-[66px]">
+    <div class="rounded-button bg-prochem-gray p-6">
+    <div class="flex flex-col items-center gap-10 rounded-button bg-prochem-dark p-8 xl:flex-row xl:gap-[100px] xl:px-[75px] xl:py-0">
+      <div class="max-w-[514px]">
+        <p class="font-sans text-[16px] font-bold leading-7 tracking-normal capitalize text-prochem-gray">
+          Lo que nos impulsa
+        </p>
+        <h2 class="mt-[25px] font-sans text-[48px] font-bold leading-tight tracking-normal capitalize text-prochem-gray">
+          Propósito
+        </h2>
+        <p class="mt-[25px] font-sans text-[16px] font-normal leading-[26px] text-prochem-gray">
+          Acompañar a nuestros clientes en la mejora continua de sus
+          procesos, aportando conocimiento, innovación y soluciones
+          confiables que impulsen su crecimiento de forma sostenible.
+        </p>
+      </div>
+      <img
+        src="/proposito-brote.png"
+        alt="Brote de planta creciendo en la tierra"
+        loading="lazy"
+        class="h-[265px] w-[222px] object-cover object-top xl:h-[360px] xl:w-[311px]"
+      />
+    </div>
+    </div>
   </div>
 </section>

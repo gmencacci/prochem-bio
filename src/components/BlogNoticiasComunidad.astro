@@ -1,10 +1,8 @@
 ---
-// Sección "Noticias" del frame INICIO — contenido verificado navegando el
-// archivo real de Figma (frame INICIO, capa "CARD PRODUCTOS" con 3 tarjetas
-// de novedades) y las 3 fotos que pasó el usuario. Las fotos 2 y 3 se
-// recortaron (sin el chrome de WhatsApp/Instagram) para dejar solo la foto,
-// igual que se ve en el diseño real.
-
+// Primera grilla de tarjetas del frame BLOG — categoría "Comunidad", mismas
+// 3 novedades y fotos ya usadas en la sección Noticias del Home (verificado
+// que el contenido es idéntico). Sin heading propio: el "Blog"/"Noticias"
+// ya está en BlogHero.astro, justo arriba de esta sección.
 interface Noticia {
   tag: string;
   date: string;
@@ -40,7 +38,7 @@ const noticias: Noticia[] = [
   },
   {
     tag: 'Comunidad',
-    date: '22 de Mayo, 2026.',
+    date: '22 de Mayo, 2026.',  
     title: 'Un compromiso que trasciende el campo',
     subtitle: 'Casa Familia, Rosario.',
     description:
@@ -53,16 +51,7 @@ const noticias: Noticia[] = [
 
 <section class="bg-white">
   <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
-    <div class="text-center">
-      <p class="font-heading text-[20px] font-bold uppercase tracking-wide text-prochem-accent">
-        Blog
-      </p>
-      <h2 class="mt-3 font-heading text-[48px] font-bold leading-tight text-prochem-dark sm:text-4xl">
-        Noticias
-      </h2>
-    </div>
-
-    <div class="mt-14 grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-3">
       {
         noticias.map((noticia) => (
           <article>

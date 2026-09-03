@@ -1,0 +1,35 @@
+---
+// Hero compartido por las páginas de categoría de producto (Herbicidas,
+// Coadyuvantes, Insecticidas, Fungicidas — frames 938:3387 / 938:3385 / ...
+// en Figma). Foto de fondo con degradé lineal a #13322c en la base (mismo
+// tratamiento que HeroHome/BlogHero), título centrado.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  titulo: string;
+  imagen: ImageMetadata;
+  alt: string;
+  anchoNativo: number;
+}
+
+const { titulo, imagen, alt, anchoNativo } = Astro.props;
+const widths = [640, 960, 1280, anchoNativo].filter((w, i, arr) => arr.indexOf(w) === i && w <= anchoNativo);
+---
+
+<section class="relative flex min-h-[240px] items-center justify-center overflow-hidden pt-24 sm:min-h-[320px] lg:min-h-[449px]">
+  <Image
+    src={imagen}
+    alt={alt}
+    class="absolute inset-0 h-full w-full object-cover"
+    widths={widths}
+    sizes="100vw"
+    format="webp"
+    quality={80}
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="absolute inset-0 bg-gradient-to-b from-[rgba(217,217,217,0)] to-[#13322c]" aria-hidden="true"></div>
+
+  <h1 class="relative font-sans text-[40px] font-bold text-white sm:text-[64px]">{titulo}</h1>
+</section>

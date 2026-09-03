@@ -18,7 +18,7 @@ const links: NavLink[] = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 w-full">
+<header class="fixed inset-x-0 top-0 z-50 w-full">
   <div class="rounded-b-2xl bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
     <nav
       class="mx-auto flex w-full max-w-[1280px] items-center justify-between px-6 py-7 sm:px-10 lg:px-[66px]"
@@ -34,7 +34,7 @@ const currentPath = Astro.url.pathname;
         />
       </a>
 
-      <div class="hidden items-center gap-8 font-heading text-base font-bold tracking-[-0.48px] md:flex">
+      <div class="hidden items-center gap-8 font-heading text-[16px] font-bold tracking-[-0.48px] md:flex">
         {
           links.map((link) => {
             const isActive = currentPath === link.href;
@@ -59,7 +59,7 @@ const currentPath = Astro.url.pathname;
 
         <a
           href="/contacto"
-          class="rounded-lg bg-prochem-yellow px-4 py-2.5 font-heading text-base font-bold tracking-[-0.48px] text-prochem-dark transition-transform hover:scale-[1.03]"
+          class="rounded-lg bg-prochem-yellow px-4 py-2.5 font-heading text-[16px] font-bold tracking-[-0.48px] text-prochem-dark transition-transform hover:scale-[1.03]"
         >
           Contacto
         </a>

@@ -1,0 +1,95 @@
+---
+// Grilla de productos de una categoría (Herbicidas, Coadyuvantes, ...) —
+// reutiliza el componente "Modal" del design system de Figma (pensado
+// originalmente para un popup, no para una card de grilla; de ahí el padding
+// tan generoso y que el bloque "Hoja de Seguridad" tenga pinta de input).
+// lineas es el cuerpo de la card (ingrediente activo y/o presentación), en
+// el orden real de Figma: en Herbicidas siempre son 2 (composición +
+// presentación), en Coadyuvantes 1 sola (solo presentación), y en
+// Insecticidas varía producto a producto — hay cards con solo composición,
+// otras con solo presentación, y una con 2 líneas de composición compuesta
+// y sin presentación. No hay un patrón fijo composición/presentación que
+// aplique a las 3 categorías, por eso quedó como array de líneas en vez de
+// 2 campos separados.
+// hojaSeguridad/marbete quedan en "#" a propósito: son links a PDFs
+// (ficha de seguridad y marbete/etiqueta) que todavía no existen — hay que
+// reemplazarlos por las URLs reales de cada documento por producto.
+// nombreLineas es un override opcional para los títulos donde Figma usa un
+// tamaño de letra mixto o reducido en vez del 24px parejo por defecto (p.ej.
+// "FLUMIOXA 48 CAMPO" con el sufijo numérico en 16px, o "S-METOLACLORCAMPO"
+// entero en 16px porque es una sola palabra muy larga). Cada elemento del
+// array externo es una línea; cada línea es una lista de segmentos que se
+// renderizan seguidos, cada uno con su propio tamaño (24px si no se indica).
+interface TituloSegmento {
+  texto: string;
+  size?: 16 | 20 | 24;
+}
+
+export interface Producto {
+  nombre: string;
+  nombreLineas?: TituloSegmento[][];
+  lineas: string[];
+  hojaSeguridad?: string;
+  marbete?: string;
+}
+
+interface Props {
+  productos: Producto[];
+}
+
+const { productos } = Astro.props;
+
+const sizeClass = (size: TituloSegmento['size']) => {
+  if (size === 16) return 'text-[16px]';
+  if (size === 20) return 'text-[20px]';
+  return '';
+};
+---
+
+<section class="bg-prochem-cream">
+  <div class="mx-auto w-full max-w-[1280px] px-6 py-16 sm:px-10 lg:px-[66px]">
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        productos.map((producto) => (
+          <div class="flex h-full flex-col items-center justify-between gap-8 rounded-card bg-white px-8 py-10 text-center shadow-[0px_16px_24px_rgba(0,0,0,0.06),0px_2px_6px_rgba(0,0,0,0.04),0px_0px_1px_rgba(0,0,0,0.04)] sm:px-14 sm:py-12">
+            <div class="flex flex-col gap-3">
+              <h3 class="font-sans text-[24px] font-bold leading-[1.3] text-[#11152a]">
+                {producto.nombreLineas
+                  ? producto.nombreLineas.map((linea, li) => (
+                      <>
+                        {li > 0 && <br />}
+                        {linea.map((seg) => <span class={sizeClass(seg.size)}>{seg.texto}</span>)}
+                      </>
+                    ))
+                  : producto.nombre}
+              </h3>
+              <p class="font-sans text-[16px] font-bold leading-[24px] text-[#4c5469]">
+                {producto.lineas.map((linea, i) => (
+                  <>
+                    {i > 0 && <br />}
+                    {linea}
+                  </>
+                ))}
+              </p>
+            </div>
+
+            <div class="flex w-full flex-col gap-2">
+              <a
+                href={producto.hojaSeguridad || '#'}
+                class="flex h-11 w-full items-center justify-center rounded-button border border-[#cfd5e1] bg-[#f8fafc] px-4 font-sans text-[16px] text-[#6f788b] transition-colors hover:bg-[#eef1f6]"
+              >
+                Hoja de Seguridad
+              </a>
+              <a
+                href={producto.marbete || '#'}
+                class="flex h-11 w-full items-center justify-center rounded-button bg-prochem-accent px-4 font-sans text-[19px] font-medium text-white transition-colors hover:bg-prochem-yellow hover:text-prochem-dark"
+              >
+                Marbete
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

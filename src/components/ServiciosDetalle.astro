@@ -45,7 +45,7 @@ const servicios: ServicioDetalle[] = [
 ];
 ---
 
-<section class="relative z-10 -mt-[260px] bg-transparent pb-16 sm:-mt-[414px]">
+<section class="relative z-10 mt-[106px] bg-transparent pb-16 sm:-mt-[607px]">
   <div class="mx-auto w-full max-w-[1280px] px-6 sm:px-10 lg:px-[66px]">
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:items-center">
       {
@@ -75,7 +75,7 @@ const servicios: ServicioDetalle[] = [
               Producción para Terceros
             </p>
 
-            <h3 class="mt-6 font-heading text-[32px] font-bold leading-tight">
+            <h3 class="mt-6 font-sans text-[32px] font-bold leading-tight tracking-normal">
               {servicio.title}
             </h3>
 
@@ -86,7 +86,7 @@ const servicios: ServicioDetalle[] = [
                     name="check-circle"
                     class={`mt-0.5 h-4 w-4 shrink-0 ${servicio.theme === 'dark' ? 'text-prochem-accent' : 'text-prochem-accent'}`}
                   />
-                  <span class={servicio.theme === 'dark' ? 'text-white/90' : 'text-prochem-dark/80'}>
+                  <span class={`font-sans text-[16px] font-normal leading-[25px] tracking-normal ${servicio.theme === 'dark' ? 'text-white/90' : 'text-prochem-dark/80'}`}>
                     {item}
                   </span>
                 </li>
