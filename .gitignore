@@ -16,3 +16,6 @@ npm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# Claude Code local session state
+.claude/scheduled_tasks.lock

@@ -1,0 +1,76 @@
+---
+// Página "Herbicidas" — corresponde al frame "HERBICIDAS" de Figma
+// (node 938:3387), 20 productos verificados uno por uno contra el JSX real
+// (nombre, composición y presentación exactos).
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategoriaHero from '../components/CategoriaHero.astro';
+import BarraCategoriasProductos from '../components/BarraCategoriasProductos.astro';
+import CatalogoProductos, { type Producto } from '../components/CatalogoProductos.astro';
+import Footer from '../components/Footer.astro';
+import herbicidasHero from '../assets/herbicidas-hero.png';
+
+const productos: Producto[] = [
+  { nombre: 'CAMPOQUAT I', lineas: ['Paraquat 27,6%.', 'Bidón 20 Lts.'] },
+  { nombre: 'CAMPO CAMBA', lineas: ['Dicamba 57,8%.', 'Bidón 10 Lts.'] },
+  { nombre: 'WEEDS OFF PLUS', lineas: ['Sal Potásica 66,2%.', 'Bidón 20 Lts.'] },
+  { nombre: 'XPULSE', lineas: ['Glufosinato 20%.', 'Bidón 20 Lts.'] },
+  {
+    nombre: 'FLUMIOXA 48 CAMPO',
+    nombreLineas: [[{ texto: 'FLUMIOXA ' }, { texto: '48 CAMPO', size: 16 }]],
+    lineas: ['Flumioxazin 48%.', 'Bidón 10 Lts.'],
+  },
+  { nombre: 'DE CAMPO BLUE', lineas: ['2,4 D Ester Hexil Etil 89%.', 'Bidón 20 Lts.'] },
+  {
+    nombre: 'CAMPOZONE 50 FW',
+    nombreLineas: [[{ texto: 'CAMPOZONE ' }, { texto: '50 FW', size: 16 }]],
+    lineas: ['Sulfentrazone 50%.', 'Bidón 10 Lts.'],
+  },
+  { nombre: 'ZAP 50', lineas: ['Ametrina 50%.', 'Bidón 20 Lts.'] },
+  {
+    nombre: 'S-METOLACLORCAMPO',
+    nombreLineas: [[{ texto: 'S-METOLACLORCAMPO', size: 16 }]],
+    lineas: ['S-Metolaclor 96%.', 'Bidón 20 Lts.'],
+  },
+  { nombre: 'CAMPODIM EC', lineas: ['Cletodim 24%.', 'Bidón 20 Lts.'] },
+  { nombre: 'PICLORAM', lineas: ['Picloram 27,8%.', 'Bidón 4x5 Lts.'] },
+  { nombre: 'CAMPOSAR 2', lineas: ['M.S.M.A 72%.', 'Bidón 20 Lts.'] },
+  { nombre: '2,4 D CAMPO', lineas: ['2,4 D Amina 60%.', 'Bidón 20 Lts.'] },
+  {
+    nombre: 'ATRACAMPO 50 FL',
+    nombreLineas: [[{ texto: 'ATRACAMPO ' }, { texto: '50 FL', size: 16 }]],
+    lineas: ['Atrazina 50%.', 'Bidón 20 Lts.'],
+  },
+  {
+    nombre: 'ATRACAMPO 90 WDG',
+    nombreLineas: [[{ texto: 'ATRACAMPO ' }, { texto: '90 WDG', size: 16 }]],
+    lineas: ['Atrazina 90%.', 'Bolsa x 15 Kg.'],
+  },
+  { nombre: 'BAUNDAP ELITE', lineas: ['Glisofato Granulado 75,7%.', 'Bolsa x 15 Kg.'] },
+  { nombre: 'MAJESTY GOLD', lineas: ['Imazetapir Granulado 70%.', 'Sobres x 0,5 Kg.'] },
+  {
+    nombre: 'XPULSE MAX 90',
+    nombreLineas: [[{ texto: 'XPULSE ' }, { texto: 'MAX 90', size: 16 }]],
+    lineas: ['Glufosinato Granulado 90%.', 'Caja de 2 x 5 Kg.'],
+  },
+  { nombre: 'BAUNDAP MAX', lineas: ['Glisofato Granulado 79,2%.', 'Bolsa x 15 Kg.'] },
+  { nombre: 'ZAP 80', lineas: ['Ametrina 80%.', 'Bolsa x 15 Kg.'] },
+];
+---
+
+<Layout title="Herbicidas">
+  <Header />
+
+  <main>
+    <CategoriaHero
+      titulo="Herbicidas"
+      imagen={herbicidasHero}
+      alt="Campo de cultivo al atardecer"
+      anchoNativo={1672}
+    />
+    <BarraCategoriasProductos active="herbicidas" />
+    <CatalogoProductos productos={productos} />
+  </main>
+
+  <Footer />
+</Layout>

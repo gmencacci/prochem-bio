@@ -50,6 +50,13 @@ tarjetas: Productos para la industria papelera / Auxiliares para industria
 textil), NormasISOHome (la misma sección que en el Home — es un frame
 distinto en Figma pero con contenido idéntico).
 
+**Blog** (`blog.astro`, frame "BLOG" en Figma): BlogHero ("Blog" / "Noticias"
+sobre foto — falta la foto real), BlogNoticiasComunidad (mismas 3 tarjetas
+y fotos que la sección Noticias del Home, sin repetir el heading que ya
+puso el Hero), BlogNoticiasEmpresa (3 tarjetas nuevas — Expansión del
+centro Logístico / Crecimiento Sostenido / Incorporación — sobre fondo
+verde oscuro, con una franja de foto debajo que también falta).
+
 Header y Footer son compartidos por todas las páginas.
 
 ## Tokens de diseño (`tailwind.config.mjs`)
@@ -200,6 +207,19 @@ tipeo nuestro (sí se corrigió el typo "indutrial" → "industrial" en un
 ítem de checklist, por ser un error obvio de tipeo). Las 2 fotos del hero (persona con guantes de nitrilo y foto de campo) ya
 las pasó el usuario y están en `public/productos-hero.png` y
 `public/productos-hero-campo.png`.
+
+**Página "Blog":** dos secciones de tarjetas de novedades. La primera
+("Comunidad") es idéntica en contenido a la sección Noticias del Home — se
+reutilizan las mismas 3 fotos/textos, solo que acá el heading "Blog" /
+"Noticias" vive en el Hero de la página (con foto de fondo) en vez de
+repetirse arriba de la grilla. La segunda ("Empresa") son 3 tarjetas
+nuevas sobre fondo verde oscuro, sin fotos individuales — el título de la
+primera decía "Expanción" en Figma (typo real, sin la "s") y se corrigió a
+"Expansión" acá, igual que se corrigió "indutrial" en Productos. **Faltan
+2 fotos reales**: el fondo del Hero (3 personas con casco de seguridad) y
+la franja debajo de las tarjetas "Empresa" (plantines/almácigo) — por
+ahora son bloques de color sólido en vez de imágenes inventadas, marcados
+con comentarios `TODO` en `BlogHero.astro` y `BlogNoticiasEmpresa.astro`.
 
 ## Pendiente antes de producción
 

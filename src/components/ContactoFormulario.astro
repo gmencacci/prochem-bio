@@ -1,0 +1,106 @@
+---
+// Formulario + datos de contacto del frame CONTACTOS — verificado con
+// get_design_context (node 220:51). El texto de los 3 renglones de contacto
+// (dirección/teléfonos/mail) sale del screenshot real: el JSX que devuelve
+// Figma para el componente "Card" trae texto placeholder genérico, no el
+// contenido real. Nota: la dirección/teléfonos acá son DISTINTOS a los del
+// Footer (que usa otra dirección y otro teléfono) — así está en el diseño,
+// no es un error de copia.
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import patronFondo from '../assets/contacto-patron-fondo.png';
+
+interface ContactoInfo {
+  icon: 'map-pin' | 'phone' | 'mail';
+  lines: string[];
+}
+
+const contactos: ContactoInfo[] = [
+  {
+    icon: 'map-pin',
+    lines: ['Av. San Nicolás Nº 645, Parque Comirsa.', 'Ramallo (2915), Buenos Aires, Argentina.'],
+  },
+  {
+    icon: 'phone',
+    lines: ['+54 (011) 6462 - 7139', '+54 (011) 446 - 0707'],
+  },
+  {
+    icon: 'mail',
+    lines: ['info@prochembio.com.ar'],
+  },
+];
+---
+
+<section class="relative overflow-hidden bg-prochem-cream">
+  <Image
+    src={patronFondo}
+    alt=""
+    class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50"
+    widths={[960, 1600]}
+    sizes="100vw"
+    format="webp"
+    quality={70}
+  />
+
+  <div class="relative mx-auto w-full max-w-[1280px] px-6 py-16 sm:px-10 lg:px-[66px] lg:py-24">
+    <div class="flex flex-col gap-12 xl:flex-row xl:items-end xl:gap-[57px]">
+      <div class="flex w-full flex-col gap-8 xl:max-w-[526px] xl:flex-1">
+        <h2 class="font-sans text-[32px] font-bold text-prochem-dark">Contactanos</h2>
+
+        <form class="flex flex-col gap-6 drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+          <div>
+            <label for="contacto-nombre" class="sr-only">Nombre y Apellido</label>
+            <input
+              id="contacto-nombre"
+              type="text"
+              name="nombre"
+              placeholder="Nombre y Apellido"
+              class="h-[59px] w-full rounded-button bg-[#f1f1f1] px-6 py-3 font-sans text-[16px] text-prochem-dark placeholder:text-[#767676] focus:outline-none focus:ring-2 focus:ring-prochem-accent"
+            />
+          </div>
+          <div>
+            <label for="contacto-email" class="sr-only">Email</label>
+            <input
+              id="contacto-email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              class="h-[59px] w-full rounded-button bg-[#f1f1f1] px-6 py-3 font-sans text-[16px] text-prochem-dark placeholder:text-[#767676] focus:outline-none focus:ring-2 focus:ring-prochem-accent"
+            />
+          </div>
+          <div>
+            <label for="contacto-consulta" class="sr-only">Consulta</label>
+            <textarea
+              id="contacto-consulta"
+              name="consulta"
+              placeholder="Ingresa tu Consulta Aquí"
+              rows={6}
+              class="h-[227px] w-full resize-none rounded-button bg-[#f1f1f1] px-6 py-5 font-sans text-[16px] text-prochem-dark placeholder:text-[#767676] focus:outline-none focus:ring-2 focus:ring-prochem-accent"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="inline-flex w-fit items-center rounded-button bg-prochem-dark px-[35px] py-[18px] font-sans text-[16px] font-bold text-prochem-accent transition-colors hover:bg-prochem-dark/90"
+          >
+            Enviar
+          </button>
+        </form>
+      </div>
+
+      <div class="flex w-full flex-col gap-8 xl:max-w-[571px] xl:flex-1">
+        {
+          contactos.map((c) => (
+            <div class="flex items-start gap-4">
+              <Icon name={c.icon} class="mt-1 h-6 w-6 shrink-0 text-prochem-dark" />
+              <div class="font-sans text-[16px] leading-relaxed text-[#767676]">
+                {c.lines.map((line) => (
+                  <p>{line}</p>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

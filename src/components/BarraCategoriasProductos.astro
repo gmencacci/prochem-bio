@@ -1,0 +1,66 @@
+---
+// Barra de navegación entre categorías de producto (frame HERBICIDAS, node
+// 938:3387, "barra de productos") — se repite igual en Coadyuvantes,
+// Insecticidas y Fungicidas (Fungicidas todavía no existe como página, por
+// eso ese href es un guess razonable: /fungicidas).
+// Los 4 íconos viven en Icon.astro (barra-*): el círculo de fondo usa
+// currentColor para poder recolorearse oscuro/accent según sea la categoría
+// activa o no — a diferencia de los badge-* (esos son siempre oscuros).
+import Icon from './Icon.astro';
+
+interface Categoria {
+  slug: 'herbicidas' | 'coadyuvantes' | 'insecticidas' | 'fungicidas';
+  label: string;
+  href: string;
+  icon: 'barra-herbicidas' | 'barra-coadyuvantes' | 'barra-insecticidas' | 'barra-fungicidas';
+}
+
+interface Props {
+  active: Categoria['slug'];
+}
+
+const { active } = Astro.props;
+
+const categorias: Categoria[] = [
+  { slug: 'herbicidas', label: 'Herbicidas', href: '/herbicidas', icon: 'barra-herbicidas' },
+  { slug: 'coadyuvantes', label: 'Coadyuvantes', href: '/coadyuvantes', icon: 'barra-coadyuvantes' },
+  { slug: 'insecticidas', label: 'Insecticidas', href: '/insecticidas', icon: 'barra-insecticidas' },
+  { slug: 'fungicidas', label: 'Fungicidas', href: '/fungicidas', icon: 'barra-fungicidas' },
+];
+---
+
+<section class="relative z-10 rounded-b-card bg-prochem-cream px-6 py-[25px] sm:px-10">
+  <div class="mx-auto grid w-full max-w-[900px] grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 sm:gap-x-[60px] lg:gap-x-[100px]">
+    {
+      categorias.map((categoria) => (
+        <a
+          href={categoria.href}
+          class="flex flex-col items-center gap-4"
+          aria-current={categoria.slug === active ? 'page' : undefined}
+        >
+          <Icon
+            name={categoria.icon}
+            class:list={[
+              'h-16 w-16 sm:h-20 sm:w-20 lg:h-[98px] lg:w-[98px]',
+              categoria.slug === active ? 'text-prochem-dark' : 'text-prochem-accent',
+            ]}
+          />
+          <span
+            class:list={[
+              'font-sans text-[16px] font-bold capitalize sm:text-[20px]',
+              categoria.slug === active ? 'text-prochem-dark' : 'text-prochem-accent',
+            ]}
+          >
+            {categoria.label}
+          </span>
+          <span
+            class:list={[
+              'h-[3px] w-full',
+              categoria.slug === active ? 'bg-prochem-dark' : 'bg-prochem-accent',
+            ]}
+          />
+        </a>
+      ))
+    }
+  </div>
+</section>

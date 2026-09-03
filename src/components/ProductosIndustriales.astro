@@ -1,27 +1,31 @@
 ---
 // Sección "Productos Industriales" del frame PRODUCTOS — heading, bajada y
-// las 2 tarjetas verificados en Figma (mismo estilo de tarjeta oscura que
-// "Contract Manufacturing", con el mismo subtítulo repetido "Producción
-// para Terceros").
+// las 2 tarjetas re-verificadas con get_design_context (nodes 814:3811 y
+// 825:4766): mismo estilo de tarjeta oscura que "Contract Manufacturing",
+// con el mismo subtítulo repetido "Producción para Terceros". Orden real de
+// Figma: "Auxiliares para industria textil." va a la izquierda, "Productos
+// para la industria papelera." a la derecha — y ambos títulos van en 2
+// líneas (el ancho angosto del contenedor en Figma fuerza ese salto).
 interface ProductoIndustrial {
-  title: string;
+  line1: string;
+  line2: string;
 }
 
 const productos: ProductoIndustrial[] = [
-  { title: 'Productos para la industria papelera.' },
-  { title: 'Auxiliares para industria textil.' },
+  { line1: 'Auxiliares para', line2: 'industria textil.' },
+  { line1: 'Productos para la', line2: 'industria papelera.' },
 ];
 ---
 
 <section class="bg-white">
   <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
-    <p class="font-heading text-sm font-bold uppercase tracking-wide text-prochem-accent">
+    <p class="font-sans text-[16px] font-bold leading-7 tracking-normal capitalize text-prochem-accent">
       Servicios Y Productos
     </p>
-    <h2 class="mt-3 font-heading text-3xl font-bold leading-tight text-prochem-dark sm:text-4xl">
+    <h2 class="mt-3 font-sans text-[48px] font-bold leading-tight capitalize text-prochem-dark">
       Productos Industriales
     </h2>
-    <p class="mt-4 max-w-[640px] text-base leading-relaxed text-prochem-dark/70">
+    <p class="mt-4 max-w-[640px] font-sans text-[20px] leading-[35px] text-prochem-dark">
       <span class="font-bold text-prochem-dark">Aplicación:</span> Mejora de
       eficiencia en procesos industriales específicos.
     </p>
@@ -29,15 +33,17 @@ const productos: ProductoIndustrial[] = [
     <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
       {
         productos.map((producto) => (
-          <div class="flex flex-col rounded-card bg-prochem-dark p-8 text-white">
-            <p class="text-sm font-bold text-white/70">Servicios</p>
-            <p class="mt-1 text-sm text-white/70">Producción para Terceros</p>
-            <h3 class="mt-6 font-heading text-2xl font-bold leading-tight">
-              {producto.title}
+          <div class="flex flex-col rounded-button bg-prochem-dark px-6 py-7 text-white">
+            <div class="flex flex-col gap-[22px]">
+              <p class="font-sans text-[16px] font-bold capitalize text-white">Servicios</p>
+              <p class="font-sans text-[16px] text-white">Producción para Terceros</p>
+            </div>
+            <h3 class="mt-[37px] font-sans text-[32px] font-bold leading-[48px]">
+              {producto.line1}<br />{producto.line2}
             </h3>
             <a
               href="/contacto"
-              class="mt-8 inline-flex w-fit items-center rounded-button bg-prochem-accent px-6 py-2.5 font-heading text-sm font-bold text-white transition-all hover:bg-prochem-yellow hover:text-prochem-dark"
+              class="mt-[47px] inline-flex w-fit items-center rounded-button bg-prochem-accent px-[22px] py-1 font-sans text-[20px] font-bold text-white transition-all hover:bg-prochem-yellow hover:text-prochem-dark"
             >
               Contactar
             </a>
@@ -45,10 +51,5 @@ const productos: ProductoIndustrial[] = [
         ))
       }
     </div>
-
-    <p class="mt-8 max-w-[640px] text-base leading-relaxed text-prochem-dark/70">
-      Desarrollo de productos auxiliares para la industria textil y
-      papelera.
-    </p>
   </div>
 </section>

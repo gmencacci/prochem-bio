@@ -3,25 +3,32 @@
 // archivo: título, bajada y CTA "Ver Más" son texto exacto. Foto de fondo
 // real de la planta de Prochem Bio, provista por el usuario.
 import Icon from './Icon.astro';
+import { Image } from 'astro:assets';
+import heroInicioPlanta from '../assets/hero-inicio-planta.png';
 ---
 
-<section class="relative flex min-h-[480px] items-center overflow-hidden sm:min-h-[560px]">
-  <img
-    src="/hero-inicio-planta.png"
+<section class="relative flex min-h-screen items-start pt-[160px] sm:pt-[200px]">
+  <Image
+    src={heroInicioPlanta}
     alt="Vista aérea de la planta industrial de Prochem Bio"
     class="absolute inset-0 h-full w-full object-cover"
+    widths={[640, 960, 1280, 1648]}
+    sizes="100vw"
+    format="webp"
+    quality={80}
     loading="eager"
     fetchpriority="high"
   />
-
-  <div class="absolute inset-0 bg-gradient-to-r from-prochem-dark/85 via-prochem-dark/55 to-transparent" aria-hidden="true"></div>
+<div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(19,50,44,0.95)_15%,rgba(255,255,255,0.25)_45%)]" aria-hidden="true"></div>
+  <!-- <div class="absolute inset-0 bg-gradient-to-r from-prochem-dark/85 via-prochem-dark/55 to-transparent" aria-hidden="true"></div> -->
 
   <div class="relative mx-auto w-full max-w-[1280px] px-6 sm:px-10 lg:px-[66px]">
     <div class="max-w-[541px]">
-      <h1 class="font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-        Tecnología E Innovación
+      <h1 class="font-sans text-[64px] font-bold leading-[75px] tracking-normal text-white">
+        Tecnología <br>
+        E Innovación
       </h1>
-      <p class="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">
+      <p class="mt-5 text-[20px] leading-relaxed text-white/90">
         Soluciones químicas industriales basadas en tecnología de procesos,
         capacidad productiva escalable y estándares internacionales de
         calidad.

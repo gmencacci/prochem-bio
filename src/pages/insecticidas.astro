@@ -1,0 +1,54 @@
+---
+// Página "Insecticidas" — corresponde al frame "INSECTICIDAS" de Figma
+// (node 938:3383), 12 productos verificados uno por uno contra el JSX real.
+// A diferencia de Herbicidas, acá NO todos los productos traen composición
+// + presentación juntas: varios solo muestran una de las dos (así está en
+// Figma, no es un dato faltante de mi parte).
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategoriaHero from '../components/CategoriaHero.astro';
+import BarraCategoriasProductos from '../components/BarraCategoriasProductos.astro';
+import CatalogoProductos, { type Producto } from '../components/CatalogoProductos.astro';
+import Footer from '../components/Footer.astro';
+import insecticidasHero from '../assets/insecticidas-hero.png';
+
+const productos: Producto[] = [
+  { nombre: 'CAMPORYL 85 WP', lineas: ['Carbaryl 85%.'] },
+  { nombre: 'BIFENTRIN 10% EC', lineas: ['Bifentrin 10%.'] },
+  {
+    nombre: 'LAMBDA CAMPO 5 EC',
+    nombreLineas: [[{ texto: 'LAMBDA CAMPO ' }], [{ texto: '5 EC', size: 16 }]],
+    lineas: ['Lambdacialotrina 25%.'],
+  },
+  { nombre: 'ABAMECTINA3,6 CAMPO', lineas: ['Abamectina 3,6%.'] },
+  { nombre: 'LUFENURON 5 CAMPO', lineas: ['Lufenuron 5%.'] },
+  { nombre: 'CAMPO EMA PLUS', lineas: ['Lufenuron 16% +', 'Emamectina 4%.'] },
+  { nombre: 'CAMPORYL', lineas: ['Caja 20 Kg.'] },
+  { nombre: 'CAMPO EMA PLUS', lineas: ['Caja de 12 Und. x 1 L.'] },
+  { nombre: 'LUFENURON 5%', lineas: ['Caja de 12 Und. x 1 L.'] },
+  { nombre: 'BIFENTRIN 10%', lineas: ['10 L.'] },
+  {
+    nombre: 'LAMBDACIALOTRINA 25%',
+    nombreLineas: [[{ texto: 'LAMBDACIALOTRINA', size: 20 }], [{ texto: '25%', size: 20 }]],
+    lineas: ['Caja de 12 Und. x 1 L.'],
+  },
+  { nombre: 'CAMPO AZOXY', lineas: ['5 L.'] },
+];
+---
+
+<Layout title="Insecticidas">
+  <Header />
+
+  <main>
+    <CategoriaHero
+      titulo="Insecticidas"
+      imagen={insecticidasHero}
+      alt="Vista aérea de fumigadora aplicando sobre un cultivo"
+      anchoNativo={1024}
+    />
+    <BarraCategoriasProductos active="insecticidas" />
+    <CatalogoProductos productos={productos} />
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,21 @@
+---
+// Banda de mapa del frame CONTACTOS — verificado con get_design_context
+// (node 220:51). Sin texto encima; el header fixed flota sobre la parte de
+// arriba, mismo patrón que las fotos de hero del resto del sitio.
+import { Image } from 'astro:assets';
+import contactoMapa from '../assets/contacto-mapa.png';
+---
+
+<section class="relative h-[280px] overflow-hidden sm:h-[420px] lg:h-[612px]">
+  <Image
+    src={contactoMapa}
+    alt="Ubicación de Prochem Bio S.A. en el mapa"
+    class="absolute inset-0 h-full w-full object-cover"
+    widths={[640, 960, 1280]}
+    sizes="100vw"
+    format="webp"
+    quality={80}
+    loading="eager"
+    fetchpriority="high"
+  />
+</section>

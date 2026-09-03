@@ -1,0 +1,39 @@
+---
+// Página "Coadyuvantes" — corresponde al frame "COADYUVANTES" de Figma
+// (node 938:3385). Solo 2 productos, verificados contra el screenshot real
+// (el JSX de Figma trae texto stale para el footer — el screenshot lo
+// desmiente y coincide con lo que ya está en Footer.astro).
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import CategoriaHero from '../components/CategoriaHero.astro';
+import BarraCategoriasProductos from '../components/BarraCategoriasProductos.astro';
+import CatalogoProductos, { type Producto } from '../components/CatalogoProductos.astro';
+import Footer from '../components/Footer.astro';
+import coadyuvantesHero from '../assets/coadyuvantes-hero.png';
+
+const productos: Producto[] = [
+  {
+    nombre: 'ECOPROCHEM PLUS',
+    nombreLineas: [[{ texto: 'ECOPROCHEM ' }, { texto: 'PLUS', size: 16 }]],
+    lineas: ['Bidón 20 Lts.'],
+  },
+  { nombre: 'ECOPROCHEM', lineas: ['Bidón 20 Lts.'] },
+];
+---
+
+<Layout title="Coadyuvantes">
+  <Header />
+
+  <main>
+    <CategoriaHero
+      titulo="Coadyuvantes"
+      imagen={coadyuvantesHero}
+      alt="Máquina fumigadora trabajando un cultivo"
+      anchoNativo={1085}
+    />
+    <BarraCategoriasProductos active="coadyuvantes" />
+    <CatalogoProductos productos={productos} />
+  </main>
+
+  <Footer />
+</Layout>

@@ -50,12 +50,6 @@ const bodyThemeClasses: Record<Valor['theme'], string> = {
   light: 'text-prochem-dark/70',
   accent: 'text-prochem-dark/80',
 };
-
-const iconThemeClasses: Record<Valor['theme'], string> = {
-  dark: 'bg-white/10 text-white',
-  light: 'bg-prochem-accent/10 text-prochem-accent',
-  accent: 'bg-prochem-dark/10 text-prochem-dark',
-};
 ---
 
 <section class="bg-white">
@@ -64,11 +58,9 @@ const iconThemeClasses: Record<Valor['theme'], string> = {
       {
         valores.map((valor) => (
           <div class={`rounded-button px-8 py-10 ${themeClasses[valor.theme]}`}>
-            <span class={`flex h-12 w-12 items-center justify-center rounded-full ${iconThemeClasses[valor.theme]}`}>
-              <Icon name={valor.icon} />
-            </span>
-            <h3 class="mt-6 font-heading text-lg font-bold">{valor.title}</h3>
-            <p class={`mt-3 text-sm leading-relaxed ${bodyThemeClasses[valor.theme]}`}>
+            <Icon name={valor.icon} class="h-8 w-8" />
+            <h3 class="mt-6 font-heading text-[24px] font-bold">{valor.title}</h3>
+            <p class={`mt-3 text-[16px] leading-relaxed ${bodyThemeClasses[valor.theme]}`}>
               {valor.description}
             </p>
           </div>

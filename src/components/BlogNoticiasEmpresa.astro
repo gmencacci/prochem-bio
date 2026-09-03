@@ -1,0 +1,56 @@
+---
+// Segunda grilla de tarjetas del frame BLOG — categoría "Empresa" (novedades
+// corporativas), verificada navegando Figma. Nota: el título de la primera
+// tarjeta decía "Expanción" en el archivo (typo real, falta la "s"); se
+// corrigió a "Expansión" acá. Fondo verde oscuro + foto de plantines abajo
+// (FALTA la foto real, el usuario la va a pasar después — por ahora es un
+// bloque sólido en vez de una imagen inventada).
+interface NoticiaEmpresa {
+  tag: string;
+  title: string;
+  subtitle: string;
+}
+
+const noticias: NoticiaEmpresa[] = [
+  {
+    tag: 'Empresa',
+    title: 'Expansión del centro Logístico',
+    subtitle: '7.000 Posiciones de almacenamiento.',
+  },
+  {
+    tag: 'Empresa',
+    title: 'Crecimiento Sostenido',
+    subtitle: 'En producción y facturación.',
+  },
+  {
+    tag: 'Empresa',
+    title: 'Incorporación',
+    subtitle: 'Nuevas líneas productivas.',
+  },
+];
+---
+
+<section class="bg-prochem-dark">
+  <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+      {
+        noticias.map((noticia) => (
+          <div class="rounded-card bg-white p-8">
+            <span class="inline-block rounded-button bg-prochem-dark px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-wide text-white">
+              {noticia.tag}
+            </span>
+            <h3 class="mt-6 font-heading text-2xl font-bold leading-tight text-prochem-dark">
+              {noticia.title}
+            </h3>
+            <p class="mt-2 text-sm font-bold text-prochem-accent">
+              {noticia.subtitle}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  {/* TODO: reemplazar por <img src="/blog-empresa-plantines.png" alt="Plantines en la tierra" class="h-full w-full object-cover" loading="lazy" /> */}
+  <div class="h-64 w-full bg-prochem-darker sm:h-72"></div>
+</section>
