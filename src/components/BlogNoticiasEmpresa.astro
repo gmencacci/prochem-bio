@@ -2,9 +2,13 @@
 // Segunda grilla de tarjetas del frame BLOG — categoría "Empresa" (novedades
 // corporativas), verificada navegando Figma. Nota: el título de la primera
 // tarjeta decía "Expanción" en el archivo (typo real, falta la "s"); se
-// corrigió a "Expansión" acá. Fondo verde oscuro + foto de plantines abajo
-// (FALTA la foto real, el usuario la va a pasar después — por ahora es un
-// bloque sólido en vez de una imagen inventada).
+// corrigió a "Expansión" acá. Fondo verde oscuro + textura de círculos al
+// 5% de opacidad (node 655:1997) + foto real de campo abajo (node 660:2000,
+// 140px de alto).
+import { Image } from 'astro:assets';
+import patronFondo from '../assets/contacto-patron-fondo.png';
+import plantines from '../assets/blog-empresa-plantines.png';
+
 interface NoticiaEmpresa {
   tag: string;
   title: string;
@@ -30,8 +34,17 @@ const noticias: NoticiaEmpresa[] = [
 ];
 ---
 
-<section class="bg-prochem-dark">
-  <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
+<section class="relative overflow-hidden bg-prochem-dark">
+  <Image
+    src={patronFondo}
+    alt=""
+    class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-5"
+    widths={[960, 1600]}
+    sizes="100vw"
+    format="webp"
+    quality={70}
+  />
+  <div class="relative mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
       {
         noticias.map((noticia) => (
@@ -51,6 +64,14 @@ const noticias: NoticiaEmpresa[] = [
     </div>
   </div>
 
-  {/* TODO: reemplazar por <img src="/blog-empresa-plantines.png" alt="Plantines en la tierra" class="h-full w-full object-cover" loading="lazy" /> */}
-  <div class="h-64 w-full bg-prochem-darker sm:h-72"></div>
+  <Image
+    src={plantines}
+    alt="Agricultor caminando junto a un tractor en un cultivo al atardecer"
+    class="relative h-[140px] w-full object-cover object-bottom"
+    widths={[640, 960, 1280, 1672]}
+    sizes="100vw"
+    format="webp"
+    quality={80}
+    loading="lazy"
+  />
 </section>
