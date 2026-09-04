@@ -7,6 +7,8 @@ import ProductosFitosanitarios from '../components/ProductosFitosanitarios.astro
 import ProductosIndustriales from '../components/ProductosIndustriales.astro';
 import NormasISOHome from '../components/NormasISOHome.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import patronFondo from '../assets/contacto-patron-fondo.png';
 ---
 
 <Layout title="Productos">
@@ -15,8 +17,37 @@ import Footer from '../components/Footer.astro';
   <main>
     <ProductosHero />
     <ServiciosDetalle />
-    <ProductosFitosanitarios />
-    <ProductosIndustriales />
+
+    {/*
+      Fondo compartido de "Productos Fitosanitarios" + "Productos Industriales"
+      (nodes 627:1161 degradé + 627:1160 textura, verificados con
+      get_design_context): en Figma es UN solo rectángulo continuo de
+      1544px que cubre ambas secciones, por eso vive acá en vez de en cada
+      componente — así no queda una costura entre ambos fondos. Degradé
+      exacto de Figma: sólido #f6f5f1 hasta el 80.6%, funde a blanco en el
+      último ~19% (cae sobre la sección de Productos Industriales).
+    */}
+    <div class="relative overflow-hidden">
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_bottom,#f6f5f1_80.6%,#ffffff_99.7%)]"
+        aria-hidden="true"
+      >
+      </div>
+      <Image
+        src={patronFondo}
+        alt=""
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50"
+        widths={[960, 1600]}
+        sizes="100vw"
+        format="webp"
+        quality={70}
+      />
+      <div class="relative">
+        <ProductosFitosanitarios />
+        <ProductosIndustriales />
+      </div>
+    </div>
+
     <NormasISOHome />
   </main>
 
