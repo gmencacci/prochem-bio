@@ -2,10 +2,14 @@
 // Franja de 3 valores del frame INICIO — versión reducida (3 de las 6
 // tarjetas de "Valores Corporativos") que sobresalen por arriba de una foto
 // de fondo a todo el ancho (primer plano de un brote, provista por el
-// usuario): la mitad superior de cada tarjeta queda sobre fondo blanco, la
+// usuario): la mitad superior de cada tarjeta queda sobre el fondo crema +
+// textura (nodes 644:1551 y compañía) que viene de Categorías/Servicios, la
 // mitad inferior sobre la foto. Título y descripción de cada tarjeta son
 // idénticos a los de Valores.astro (mismo componente reutilizado en
 // Figma), verificados contra el archivo.
+// Sin bg propio a propósito: el fondo de la mitad superior vive en
+// index.astro (mismo wrapper que Categorías/Servicios, porque en Figma ese
+// rectángulo de fondo se extiende hasta la mitad de estas tarjetas).
 import Icon from './Icon.astro';
 
 interface Valor {
@@ -52,7 +56,7 @@ const bodyThemeClasses: Record<Valor['theme'], string> = {
 };
 ---
 
-<section class="bg-white">
+<section>
   <div class="relative z-10 mx-auto -mb-[130px] w-full max-w-[1280px] px-6 sm:px-10 lg:px-[66px]">
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
       {

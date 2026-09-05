@@ -10,6 +10,8 @@
 // (viewBox 614x899): cada rectángulo ahí tenía una posición x/y/w/h fija,
 // que acá se replica en % dentro de un contenedor con el mismo aspect-ratio
 // — no son posiciones estimadas a ojo desde una captura.
+// Sin bg propio a propósito: el fondo (crema + textura, compartido con
+// Categorias) vive en index.astro.
 import Icon from './Icon.astro';
 
 interface Servicio {
@@ -97,7 +99,7 @@ const servicios: Servicio[] = [
 ];
 ---
 
-<section class="bg-white">
+<section>
   <div class="mx-auto grid w-full max-w-[1280px] grid-cols-1 items-start gap-12 px-6 py-20 sm:px-10 lg:grid-cols-[568fr_613fr] lg:px-[66px]">
     <div>
       <p class="font-sans text-[20px] font-bold leading-7 tracking-normal capitalize text-[#70b21c]">
