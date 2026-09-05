@@ -8,6 +8,8 @@ import ValoresDestacados from '../components/ValoresDestacados.astro';
 import Noticias from '../components/Noticias.astro';
 import NormasISOHome from '../components/NormasISOHome.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import patronFondo from '../assets/contacto-patron-fondo.png';
 ---
 
 <Layout title="Inicio">
@@ -15,10 +17,58 @@ import Footer from '../components/Footer.astro';
 
   <main>
     <HeroHome />
-    <Categorias />
-    <Servicios />
-    <ValoresDestacados />
-    <Noticias />
+
+    {/*
+      Fondo compartido de "Categorías" + "Servicios" + la mitad superior de
+      las tarjetas de "ValoresDestacados" (node 644:1551, verificado con
+      get_design_context): en Figma es un solo rectángulo continuo que
+      llega hasta la mitad de esas tarjetas (arrancan en y=2251, el fondo
+      termina en y=2421), por eso vive acá en vez de en cada componente.
+      ValoresDestacados entra completo (foto incluida) para no tener que
+      cortar el wrapper a mitad de sus tarjetas — la foto es opaca así que
+      no cambia nada visualmente que el fondo "seguro por debajo" de ella.
+      Crema #f6f5f1 + textura de círculos al 50%, sin degradé (igual que el
+      de Logística+Soluciones en Nosotros).
+    */}
+    <div class="relative overflow-hidden bg-prochem-cream">
+      <Image
+        src={patronFondo}
+        alt=""
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50"
+        widths={[960, 1600]}
+        sizes="100vw"
+        format="webp"
+        quality={70}
+      />
+      <div class="relative">
+        <Categorias />
+        <Servicios />
+        <ValoresDestacados />
+      </div>
+    </div>
+
+    {/*
+      Fondo de "Noticias" (nodes 655:1980 crema + 655:1981 textura,
+      verificados con get_design_context): arranca justo donde termina la
+      foto de fondo de ValoresDestacados y cubre el heading "Blog/Noticias"
+      + la grilla de tarjetas. Mismo tratamiento (crema + textura al 50%)
+      que el bloque de arriba.
+    */}
+    <div class="relative overflow-hidden bg-prochem-cream">
+      <Image
+        src={patronFondo}
+        alt=""
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50"
+        widths={[960, 1600]}
+        sizes="100vw"
+        format="webp"
+        quality={70}
+      />
+      <div class="relative">
+        <Noticias />
+      </div>
+    </div>
+
     <NormasISOHome />
   </main>
 
