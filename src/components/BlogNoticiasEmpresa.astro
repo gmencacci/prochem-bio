@@ -4,7 +4,16 @@
 // tarjeta decía "Expanción" en el archivo (typo real, falta la "s"); se
 // corrigió a "Expansión" acá. Fondo verde oscuro + textura de círculos al
 // 5% de opacidad (node 655:1997) + foto real de campo abajo (node 660:2000,
-// 140px de alto).
+// 140px de alto). Tarjetas re-verificadas con get_design_context
+// (node 807:2075): gap real de 27px entre tarjetas, padding interno de
+// 24px y separación de 16px entre el badge y el título. El radio de borde
+// no viene expuesto en la data de Figma (componente "Card" del design
+// system, mapeado por Code Connect) — medido a mano analizando los
+// píxeles del screenshot exportado: ~4-5px, muy por debajo del
+// rounded-card (16px) que tenía antes. También se agregó el borde de 1px
+// que tienen las tarjetas en Figma (color gris puro, medido a mano en el
+// screenshot: ~#e2e2e2, coincide con el token prochem-gray #e3e3e3 ya
+// existente).
 import { Image } from 'astro:assets';
 import patronFondo from '../assets/contacto-patron-fondo.png';
 import plantines from '../assets/blog-empresa-plantines.png';
@@ -45,14 +54,14 @@ const noticias: NoticiaEmpresa[] = [
     quality={70}
   />
   <div class="relative mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+    <div class="grid grid-cols-1 gap-[27px] sm:grid-cols-3">
       {
         noticias.map((noticia) => (
-          <div class="rounded-card bg-white p-8">
+          <div class="rounded border border-prochem-gray bg-white p-6">
             <span class="inline-block rounded-button bg-prochem-dark px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-wide text-white">
               {noticia.tag}
             </span>
-            <h3 class="mt-6 font-heading text-2xl font-bold leading-tight text-prochem-dark">
+            <h3 class="mt-4 font-heading text-2xl font-bold leading-tight text-prochem-dark">
               {noticia.title}
             </h3>
             <p class="mt-2 text-sm font-bold text-prochem-accent">
