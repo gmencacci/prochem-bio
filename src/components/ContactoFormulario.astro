@@ -6,6 +6,11 @@
 // contenido real. Nota: la dirección/teléfonos acá son DISTINTOS a los del
 // Footer (que usa otra dirección y otro teléfono) — así está en el diseño,
 // no es un error de copia.
+// El botón "Enviar" vive fuera del <form> (asociado vía el atributo
+// form="contacto-form") para poder ubicarlo en su propia fila del grid,
+// separado de los campos: así la columna de tarjetas (que se estira con
+// justify-end) queda anclada al fondo del textarea y no al fondo del botón,
+// tal como está en Figma.
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import patronFondo from '../assets/contacto-patron-fondo.png';
@@ -43,11 +48,11 @@ const contactos: ContactoInfo[] = [
   />
 
   <div class="relative mx-auto w-full max-w-[1280px] px-6 py-16 sm:px-10 lg:px-[66px] lg:py-24">
-    <div class="flex flex-col gap-12 xl:flex-row xl:items-end xl:gap-[57px]">
-      <div class="flex w-full flex-col gap-8 xl:max-w-[526px] xl:flex-1">
+    <div class="flex flex-col xl:grid xl:grid-cols-[526px_571px] xl:gap-x-[57px] xl:gap-y-6">
+      <form id="contacto-form" class="flex w-full flex-col gap-8 xl:col-start-1 xl:row-start-1">
         <h2 class="font-sans text-[32px] font-bold text-prochem-dark">Contactanos</h2>
 
-        <form class="flex flex-col gap-6 drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+        <div class="flex flex-col gap-6 drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
           <div>
             <label for="contacto-nombre" class="sr-only">Nombre y Apellido</label>
             <input
@@ -78,16 +83,10 @@ const contactos: ContactoInfo[] = [
               class="h-[227px] w-full resize-none rounded-button bg-[#f1f1f1] px-6 py-5 font-sans text-[16px] text-prochem-dark placeholder:text-[#767676] focus:outline-none focus:ring-2 focus:ring-prochem-accent"
             ></textarea>
           </div>
-          <button
-            type="submit"
-            class="inline-flex w-fit items-center rounded-button bg-prochem-dark px-[35px] py-[18px] font-sans text-[16px] font-bold text-prochem-accent transition-colors hover:bg-prochem-dark/90"
-          >
-            Enviar
-          </button>
-        </form>
-      </div>
+        </div>
+      </form>
 
-      <div class="flex w-full flex-col gap-8 xl:max-w-[571px] xl:flex-1">
+      <div class="order-2 mt-12 flex w-full flex-col justify-end gap-8 xl:order-none xl:col-start-2 xl:row-start-1 xl:mt-0">
         {
           contactos.map((c) => (
             <div class="flex items-start gap-4">
@@ -101,6 +100,14 @@ const contactos: ContactoInfo[] = [
           ))
         }
       </div>
+
+      <button
+        form="contacto-form"
+        type="submit"
+        class="order-1 mt-6 inline-flex w-fit items-center rounded-button bg-prochem-dark px-[35px] py-[18px] font-sans text-[16px] font-bold text-prochem-accent drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)] transition-colors hover:bg-prochem-dark/90 xl:order-none xl:col-start-1 xl:row-start-2 xl:mt-0"
+      >
+        Enviar
+      </button>
     </div>
   </div>
 </section>

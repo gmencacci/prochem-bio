@@ -47,7 +47,7 @@ const categorias: Categoria[] = [
 ---
 
 <section class="mx-auto w-full max-w-[1280px] px-6 py-12 sm:px-10 lg:px-[66px]">
-  <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+  <div class="grid grid-cols-2 gap-6 sm:grid-cols-4">
     {
       categorias.map((categoria) => (
         <div class="relative flex aspect-[3/4] flex-col items-center justify-end overflow-hidden rounded-button p-5 text-center">
@@ -57,16 +57,16 @@ const categorias: Categoria[] = [
             class="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
           />
-          <div class="absolute inset-0 bg-[linear-gradient(to_top,rgba(19,50,44,0.95)_0%,rgba(19,50,44,0)_55%)]" aria-hidden="true" />
+          <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(19,50,44,0)_0%,rgba(19,50,44,1)_94.5%)]" aria-hidden="true" />
 
-          <Icon name={categoria.icon} class="relative h-14 w-14" />
+          <Icon name={categoria.icon} class="relative h-12 w-12" />
 
-          <span class="relative mt-4 font-heading text-base font-bold text-white">
+          <span class="relative mt-4 font-heading text-[18px] font-bold text-white sm:text-[24px]">
             {categoria.label}
           </span>
           <a
             href={categoria.href}
-            class="relative mt-3 inline-flex items-center gap-2 rounded-button bg-prochem-accent px-5 py-2.5 font-heading text-sm font-bold text-white transition-all hover:scale-105 hover:bg-prochem-yellow hover:text-prochem-dark"
+            class="relative mt-3 inline-flex items-center gap-3 rounded-button bg-prochem-accent px-5 py-2 font-heading text-base font-bold text-white transition-all hover:scale-105 hover:bg-prochem-yellow hover:text-prochem-dark"
           >
             Ver Más
             <Icon name="arrow-right-circle" class="h-4 w-4" />

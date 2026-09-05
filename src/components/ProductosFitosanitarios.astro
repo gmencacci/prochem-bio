@@ -2,11 +2,12 @@
 // Sección "Productos Fitosanitarios" del frame PRODUCTOS — heading y bajada
 // verificados en Figma. La grilla de 4 categorías reutiliza el mismo
 // componente Categorias.astro del Home (mismas fotos, íconos y botones
-// "Ver Más").
+// "Ver Más"). Sin bg propio a propósito: el fondo (degradé + textura,
+// compartido con ProductosIndustriales) vive en productos.astro.
 import Categorias from './Categorias.astro';
 ---
 
-<section class="bg-white">
+<section>
   <div class="mx-auto w-full max-w-[1280px] px-6 pt-60 sm:px-10 lg:px-[66px]">
     <p class="font-sans text-[20px] font-bold leading-7 tracking-normal capitalize text-[#70b21c]">
       Servicios Y Productos

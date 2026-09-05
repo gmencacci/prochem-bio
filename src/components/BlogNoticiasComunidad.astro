@@ -3,6 +3,12 @@
 // 3 novedades y fotos ya usadas en la sección Noticias del Home (verificado
 // que el contenido es idéntico). Sin heading propio: el "Blog"/"Noticias"
 // ya está en BlogHero.astro, justo arriba de esta sección.
+// Fondo crema + textura de círculos al 70% de opacidad (verificado con
+// get_metadata, node 809:2435) — la textura es el mismo archivo que ya usa
+// ContactoFormulario.astro (mismo hash, byte a byte), reusado acá.
+import { Image } from 'astro:assets';
+import patronFondo from '../assets/contacto-patron-fondo.png';
+
 interface Noticia {
   tag: string;
   date: string;
@@ -49,8 +55,17 @@ const noticias: Noticia[] = [
 ];
 ---
 
-<section class="bg-white">
-  <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
+<section class="relative overflow-hidden bg-prochem-cream">
+  <Image
+    src={patronFondo}
+    alt=""
+    class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-70"
+    widths={[960, 1600]}
+    sizes="100vw"
+    format="webp"
+    quality={70}
+  />
+  <div class="relative mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
     <div class="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-3">
       {
         noticias.map((noticia) => (

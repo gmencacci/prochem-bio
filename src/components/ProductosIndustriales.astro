@@ -6,6 +6,8 @@
 // Figma: "Auxiliares para industria textil." va a la izquierda, "Productos
 // para la industria papelera." a la derecha — y ambos títulos van en 2
 // líneas (el ancho angosto del contenedor en Figma fuerza ese salto).
+// Sin bg propio a propósito: el fondo (degradé + textura, compartido con
+// ProductosFitosanitarios) vive en productos.astro.
 interface ProductoIndustrial {
   line1: string;
   line2: string;
@@ -17,7 +19,7 @@ const productos: ProductoIndustrial[] = [
 ];
 ---
 
-<section class="bg-white">
+<section>
   <div class="mx-auto w-full max-w-[1280px] px-6 py-20 sm:px-10 lg:px-[66px]">
     <p class="font-sans text-[16px] font-bold leading-7 tracking-normal capitalize text-prochem-accent">
       Servicios Y Productos
