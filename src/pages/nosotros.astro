@@ -13,6 +13,8 @@ import Proposito from '../components/Proposito.astro';
 import Historia from '../components/Historia.astro';
 import NormasISOHome from '../components/NormasISOHome.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import patronFondo from '../assets/contacto-patron-fondo.png';
 ---
 
 <Layout title="Quienes Somos">
@@ -20,11 +22,63 @@ import Footer from '../components/Footer.astro';
 
   <main>
     <Hero />
-    <Valores />
-    <Logistica />
-    <Soluciones />
+
+    {/*
+      Fondo compartido de "Logística Y Almacenamiento" + "Soluciones que
+      impulsan la industria" (node 837:7925, verificado con
+      get_design_context): en Figma es un solo rectángulo continuo de
+      1704px que arranca ANTES de que terminen las tarjetas de Valores
+      (pasa por debajo de ellas hasta la altura donde termina la foto del
+      Hero), por eso Valores vive acá adentro y no antes del wrapper.
+      Crema #f6f5f1 sólido + textura de círculos al 50%, sin degradé (a
+      diferencia del fondo de Productos).
+
+      flow-root en vez de overflow-hidden: Valores usa margin-top negativo
+      para flotar sobre el Hero, y ese margen tiene que poder "escaparse"
+      por arriba del wrapper sin recortarse. flow-root contiene el margen
+      negativo (no deja que se lo coma el elemento anterior) sin cortar el
+      contenido que sobresale, que es justo lo que overflow-hidden haría.
+    */}
+    <div class="relative flow-root bg-prochem-cream">
+      <Image
+        src={patronFondo}
+        alt=""
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50"
+        widths={[960, 1600]}
+        sizes="100vw"
+        format="webp"
+        quality={70}
+      />
+      <div class="relative">
+        <Valores />
+        <Logistica />
+        <Soluciones />
+      </div>
+    </div>
+
     <Proposito />
-    <Historia />
+
+    {/*
+      Fondo de "Una historia de crecimiento y evolución" (nodes 644:1548
+      crema + 644:1549 textura, verificados con get_design_context): mismo
+      tratamiento que el bloque de arriba (crema #f6f5f1 + textura al 50%),
+      pero es un rectángulo separado que cubre solo esta sección.
+    */}
+    <div class="relative overflow-hidden bg-prochem-cream">
+      <Image
+        src={patronFondo}
+        alt=""
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50"
+        widths={[960, 1600]}
+        sizes="100vw"
+        format="webp"
+        quality={70}
+      />
+      <div class="relative">
+        <Historia />
+      </div>
+    </div>
+
     <NormasISOHome />
   </main>
 
